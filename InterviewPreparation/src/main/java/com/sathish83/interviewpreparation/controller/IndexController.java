@@ -10,13 +10,25 @@ public class IndexController {
 
 	@RequestMapping("/")
     public String home(Map<String, Object> model) {
-        model.put("message", "HowToDoInJava Reader !!");
         return "index";
     }
      
     @RequestMapping("/microservices")
-    public String microservices(Map<String, Object> model) {
+    public String microservices() {
         return "microservices";
     }
-	
+
+    @RequestMapping("/m-designpatterns")
+    public String md() {
+        return "m-designpatterns";
+    }
+    
+    @RequestMapping("/eventdriven")
+    public String ed() {
+        return "eventdriven";
+    }
+
+
+
+    
 }

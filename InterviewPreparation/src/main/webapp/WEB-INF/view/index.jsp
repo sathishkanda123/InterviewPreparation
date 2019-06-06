@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
+<title>InterviewQuestions</title>
 <body>
 	<div>
 		<div>
