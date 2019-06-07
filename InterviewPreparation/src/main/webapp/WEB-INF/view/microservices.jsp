@@ -26,6 +26,9 @@ application design - You can see multiple isolated services like catalog, Orderi
 <img align="middle"
  src="https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/media/image1.png" alt="multipleservices" style="width:600px;height:400px;">
 </div><br>
+<div>
+Main challenges in microservices are Load balancing, Distrubuted tracing, Fault tolerance, Datamodeling, Service discovery , Independent releasable ...Some of the design patterns are come up with solutions for this problems 
+</div>
 If you start a application in microservices , you should learn some other topics, in order to build efficent and scalable applications like
 designpatternes,servicediscovery,Api gateway,servicemesh,messaging communication.., i explained one by one in index page please refer through home page  
 </body>

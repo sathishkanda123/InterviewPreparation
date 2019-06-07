@@ -32,9 +32,7 @@ assign the trade to a broker, calculate the commission, and finally place the tr
 <p>
 The broker topology differs from the mediator topology in that there is no central event mediator; rather, the message flow is distributed across the event processor components in a chain-like fashion through a lightweight message broker (e.g., ActiveMQ, HornetQ, etc.). This topology is useful when you have a relatively simple event processing flow and you do not want (or need) central event orchestration.
 There are two main types of architecture components within the broker topology: a broker component and an event processor component. The broker component can be centralized or federated and contains all of the event channels that are used within the event flow. The event channels contained within the broker component can be message queues, message topics, or a combination of both
-
 </p>
-
 </li>
 </ul>
 </p>
@@ -54,7 +52,7 @@ Netty
 <li>
  <h5><u>Saga Pattern</u></h5>
  In a nutshell it's a pattern which describes about chain of transactions which related each other.<br>
- <p align="center">
+ <p>
  A Saga is a sequence of local transactions where each transaction updates data within a single service. 
  The first transaction is initiated by an external request corresponding to the 
  system operation, and then each subsequent step is triggered by the completion of the previous one.  
@@ -80,7 +78,20 @@ The Saga pattern is difficult to debug, especially when many microservices are i
 </ul>
  </p> 
 </li>
-</ul>
+
+<li>
+<h5><u>Aggregator Pattern</u></h5>
+Aggregator would be a simple web page that invokes multiple services to achieve the functionality required by the application
+<p>
+Aggregator would be a simple web page that invokes multiple services to achieve the functionality required by the application. Since each service (Service A, Service B, and Service C) is exposed using a lightweight REST mechanism, the web page can retrieve the data and process/display it accordingly
+<br>
+Another option for Aggregator is where no display is required, and instead it is just a higher level composite microservice which can be consumed by other services. In this case, the aggregator would just collect the data from each of the individual microservice, apply business logic to it, and further publish it as a REST endpoint. This can then be consumed by other services that need it.
+</p>
+<div>
+<img style="width:400px;height:400px" alt="Saga Pattern" src="http://blog.arungupta.me/wp-content/uploads/2015/04/microservices-aggregator-1024x528.png"></img>
+</div>
+</li>
+</ul> 
 </p>
 </body>
 </html>

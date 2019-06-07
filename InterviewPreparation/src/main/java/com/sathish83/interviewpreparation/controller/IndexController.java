@@ -14,7 +14,7 @@ public class IndexController {
     }
      
     @RequestMapping("/microservices")
-    public String microservices() {
+    public String ms() {
         return "microservices";
     }
 
@@ -23,12 +23,12 @@ public class IndexController {
         return "m-designpatterns";
     }
     
-    @RequestMapping("/eventdriven")
-    public String ed() {
-        return "eventdriven";
+    @RequestMapping("/apigateway")
+    public String ag() {
+        return "apigateway";
     }
 
 
 
-    
+
 }
