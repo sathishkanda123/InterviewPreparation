@@ -24,7 +24,7 @@
     <li><a target="_blank" href="threads">Threads</a></li>
     <li><a target="_blank" href="programs">Programs</a></li>
     <li><a target="_blank" href="oo-designpattern">OO-DesignPatterns</a></li>
-    <li><a target="_blank" href="others">Others</a></li>
+    <li><a target="_blank" href="others_java">Others</a></li>
    </ul>
    <li><u style="color:blue">Frameworks</u></li>
    			<ul>

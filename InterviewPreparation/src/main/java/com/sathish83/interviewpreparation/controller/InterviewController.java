@@ -9,73 +9,83 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class InterviewController {
 
 	@RequestMapping("/")
-    public String home(Map<String, Object> model) {
-        return "index";
-    }
-     
-    @RequestMapping("/microservices")
-    public String ms() {
-        return "microservices";
-    }
+	public String home(Map<String, Object> model) {
+		return "index";
+	}
 
-    @RequestMapping("/m-designpatterns")
-    public String md() {
-        return "m-designpatterns";
-    }
-    
-    @RequestMapping("/apigateway")
-    public String ag() {
-        return "apigateway";
-    }
-    
-    @RequestMapping("/oo-designpattern")
-    public String ooDesignPattern() {
-        return "oo-designpattern";
-    }
+	@RequestMapping("/microservices")
+	public String ms() {
+		return "microservices";
+	}
 
-    @RequestMapping("/facade")
-    public String fe() {
-        return "facade";
-    }
-    
-    @RequestMapping("/observer")
-    public String or() {
-        return "observer";
-    }
+	@RequestMapping("/m-designpatterns")
+	public String md() {
+		return "m-designpatterns";
+	}
 
-    @RequestMapping("/singleton")
-    public String st() {
-        return "singleton";
-    }
+	@RequestMapping("/apigateway")
+	public String ag() {
+		return "apigateway";
+	}
 
-    @RequestMapping("/mvc")
-    public String mvc() {
-        return "mvc";
-    }
+	@RequestMapping("/oo-designpattern")
+	public String ooDesignPattern() {
+		return "oo-designpattern";
+	}
 
-    @RequestMapping("/strategy")
-    public String sgy() {
-        return "strategy";
-    }
+	@RequestMapping("/facade")
+	public String fe() {
+		return "facade";
+	}
 
-    @RequestMapping("/flyweight")
-    public String fwt() {
-        return "flyweight";
-    }
+	@RequestMapping("/observer")
+	public String or() {
+		return "observer";
+	}
 
-    @RequestMapping("/objectpool")
-    public String opl() {
-        return "objectpool";
-    }
+	@RequestMapping("/singleton")
+	public String st() {
+		return "singleton";
+	}
 
-    @RequestMapping("/chainofresponsibility")
-    public String cor() {
-        return "chainofresponsibility";
-    }
+	@RequestMapping("/mvc")
+	public String mvc() {
+		return "mvc";
+	}
 
-    @RequestMapping("/angular")
-    public String angular() {
-        return "angular";
-    }
+	@RequestMapping("/strategy")
+	public String sgy() {
+		return "strategy";
+	}
+
+	@RequestMapping("/flyweight")
+	public String fwt() {
+		return "flyweight";
+	}
+
+	@RequestMapping("/objectpool")
+	public String opl() {
+		return "objectpool";
+	}
+
+	@RequestMapping("/chainofresponsibility")
+	public String cor() {
+		return "chainofresponsibility";
+	}
+
+	@RequestMapping("/angular")
+	public String angular() {
+		return "angular";
+	}
+	
+	@RequestMapping("/collections")
+	public String collections() {
+		return "collections";
+	}
+	
+	@RequestMapping("/others_java")
+	public String oj() {
+		return "others_java";
+	}
 
 }
