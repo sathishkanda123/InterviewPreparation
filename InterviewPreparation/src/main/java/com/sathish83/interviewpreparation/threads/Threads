@@ -38,3 +38,17 @@ Priority Based Scheduling
 
 
 
+RoundRobinScheduling
+....................
+CPU Burst : It is the amount of time required by a process or can be said the amount of time required by the process to finish
+            A fixed time is allotted to each process, called quantum, for execution.
+            The burst is an estimate based on an initial starting default burst value and actual historical run values
+            
+            
+Completion Time: Time at which process completes its execution.
+Turn Around Time: Time Difference between completion time and arrival time. Turn Around Time = Completion Time – Arrival Time
+Waiting Time(W.T): Time Difference between turn around time and burst time.
+Waiting Time = Turn Around Time – Burst Time
+
+
+

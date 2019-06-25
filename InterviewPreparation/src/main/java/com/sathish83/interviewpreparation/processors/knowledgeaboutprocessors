@@ -12,4 +12,5 @@ processors go through four main steps whenever they process instructions: fetch,
 
 Field Visibility
 ................
+Volatile - between threads data can share
 
