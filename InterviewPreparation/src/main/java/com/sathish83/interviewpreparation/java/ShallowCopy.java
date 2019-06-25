@@ -1,4 +1,4 @@
-package com.sathish83.interviewpreparation.java8;
+package com.sathish83.interviewpreparation.java;
 
 import java.util.Arrays;
 
