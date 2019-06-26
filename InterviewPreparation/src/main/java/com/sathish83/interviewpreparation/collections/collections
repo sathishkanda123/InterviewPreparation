@@ -1,0 +1,86 @@
+List - Array List , LinkedList, Vector , Stack
+....
+It can have duplicate values
+
+Array List
+..........
+Maintaining insertion order 
+Non-synchronized
+RandomAccessed
+Better to for storing and accessing data
+Manipulation is slow , since its internally uses array, if any element removed from an array , all the bits are shifted in memory
+
+LinkedList
+..........
+Using doubley linked list to store elements
+Store duplicate values
+Maintains Inservtion order
+Non synchronized
+Manipulation is fast , because no shifting is required
+
+
+ArrayList vs LinkedList
+.......................
+Search
+......
+ArrayList is a index based structure backed by an array, it provides random access to its elements with a performance 
+equal to O(1)
+
+LinkedList stores its data as a list of elements and every element is linked to its previous and next element. 
+In this case, the search operation for an item has execution time equal to O(n).
+
+Add,Remove and Insert
+.....................
+The insertion, addition and removal operations of an item are faster in a LinkedList 
+because there is no need to resize an array or update the index when an element is added to some arbitrary position inside the collection, 
+only references in surrounding elements will change.
+
+Memory usage
+...........
+A LinkedList consumes more memory than an ArrayList because of every node in a LinkedList stores two references,
+ one for its previous element and one for its next element, whereas ArrayList holds only data and its index.
+
+
+
+
+Queue - FIFO - Priority queue, Dequeu and ArrayDeque
+.........
+
+PriorityQueue
+............
+Defined in ordered list
+Not allowed null values
+
+Dequeue
+........
+Double end queue - can remove and add on both sides
+
+ArrayDequeu
+...........
+Queueu + Dequeueu - faster than ArrayList and stack and has no capacity restrictions
+
+
+Set - Hash set , linked list and Tree set 
+...
+Unordered elements of set , not allow duplicate values
+Store only one null value
+
+
+Map - > Hashmap , Linkedhashmap,TreeMap
+...
+Doesn't allow duplicate keys , but allow duplicate values
+Hash map and LinkedHashmap allow null keys and values but tree map doesn't allow any null key or null value
+LinkedHashmap - maintains insertion order
+TreeMap- ascending order
+
+ConcurrentHashMap
+................
+
+
+
+
+
+
+
+
+
