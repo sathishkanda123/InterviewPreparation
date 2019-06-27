@@ -2,11 +2,13 @@ package com.sathish83.interviewpreparation.controller;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class InterviewController {
+public class InterviewController implements InitializingBean , DisposableBean{ 
 
 	@RequestMapping("/")
 	public String home(Map<String, Object> model) {
@@ -87,5 +89,18 @@ public class InterviewController {
 	public String oj() {
 		return "others_java";
 	}
+
+	@Override
+	public void destroy() throws Exception {
+		System.out.println("Destroy called");
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		
+		System.out.println("After Proeprties set");
+		
+	}
+
 
 }

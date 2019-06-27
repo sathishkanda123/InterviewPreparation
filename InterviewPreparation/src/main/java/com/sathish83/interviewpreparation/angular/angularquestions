@@ -1,0 +1,280 @@
+
+lekitha leki
+Jun 26, 2019, 8:29 PM (12 hours ago)
+to me
+
+1.What is Angular? and what are the advantages and disadvantages using Angular?
+Angular is a TypeScript-based open-source front-end platform that makes it easy to build applications with in web/mobile/desktop. The major features of this framework such as declarative templates, dependency injection, end to end tooling, and many more other features are used to ease the development.Angular is a product developed and maintained by the techie giant Google and has adopted the SPA (Single Page Application) principles.
+
+Advantages:
+It supports two-way data-binding
+It follows MVC pattern architecture
+It supports static template and Angular template
+You can add a custom directive
+It also supports RESTfull services
+Validations are supportedClient and server communication is facilitated
+Support for dependency injection
+Has strong features like Event Handlers, Animation, etc.
+
+Disadvantages
+Angular 5 is a complete package that is created with the purpose to deliver the fastest applications with an easier background.The way components are managed is too complicated. For instance, you may need up to five files for a single component in Angular, have to inject dependencies, and declare the component lifecycle interfaces.
+
+2.What are the life cycle methods in Angular?
+A component has a lifecycle managed by Angular.
+
+Angular creates it, renders it, creates and renders its children, checks it when its data-bound properties change, and destroys it before removing it from the DOM
+
+ngOnChanges():
+
+Respond when Angular (re)sets data-bound input properties. The method receives a SimpleChangesobject of current and previous property values.
+
+Called before ngOnInit()and whenever one or more data-bound input properties change.
+
+ngOnInit():
+
+Initialize the directive/component after Angular first displays the data-bound properties and sets the directive/component's input properties.
+Called once, after the firstngOnChanges().
+
+ngDoCheck():
+Detect and act upon changes that Angular can't or won't detect on its own.
+Called during every change detection run, immediately
+after ngOnChanges() and ngOnInit().
+
+ngAfterContentInit():
+Respond after Angular projects external content into the component's view / the view that a directive is in.
+Called once after the first ngDoCheck().
+
+ngAfterContentChecked():
+Respond after Angular checks the content projected into the directive/component.
+Called after the ngAfterContentInit()and every subsequent ngDoCheck().
+
+ngAfterViewInit():
+Respond after Angular initializes the component's views and child views / the view that a directive is in.
+Called once after the first ngAfterContentChecked().
+
+ngAfterViewChecked():
+Respond after Angular checks the component's views and child views / the view that a directive is in.
+Called after the ngAfterViewInit() and every subsequent ngAfterContentChecked().
+
+ngOnDestroy():
+Cleanup just before Angular destroys the directive/component. Unsubscribe Observables and detach event handlers to avoid memory leaks.
+Called just before Angular destroys the directive/component.
+
+3.What is compilation in Angular 4? And what are the types of compilation in Angular 4?
+
+Angular offers two ways to compile your application:
+
+Just-in-Time (JIT), which compiles your app in the browser at runtime.
+Ahead-of-Time (AOT), which compiles your app at build time.
+
+JIT compilation is the default when you run the ng build (build only) or ng serve (build and serve locally) CLI commands
+
+The ng build command with the --prod meta-flag (ng build --prod) compiles with AOT by default.
+
+Faster rendering:
+With AOT, the browser downloads a pre-compiled version of the application.render the application immediately, without waiting to compile the app first.
+
+Fewer asynchronous requests:
+The compiler inlines external HTML templates and CSS style sheets within the application JavaScript, eliminating separate ajax requests for those source files
+
+Smaller Angular framework download size:
+There's no need to download the Angular compiler if the app is already compiled. The compiler is roughly half of Angular itself, so omitting it dramatically reduces the application payload.
+
+Detect template errors earlier:
+The AOT compiler detects and reports template binding errors during the build step before users can see them.
+
+Better security:
+AOT compiles HTML templates and components into JavaScript files long before they are served to the client.there are fewer opportunities for injection attacks.
+
+
+5.What is meant bycomponent,Directive,Service and model/interfce in Angular and explain with syntax ?
+
+Components – A component controls one or more views. Each view is some specific section of the screen. Every Angular application has at least one component, known as the root component. It is bootstrapped inside the main module, known as the root module. A component contains application logic defined inside a class. This class is responsible for interacting with the view via an API of properties and methods.
+
+Syntax:ng generate component componentname
+
+Directives – The templates used by Angular are dynamic in nature. Directives are responsible for instructing Angular about how to transform the DOM when rendering a template. Actually, components are directives with a template. Other types of directives are attribute and structural directives.
+Syntax:ng generate directive directivename
+
+Services – A very broad category, a service can be anything ranging from a value and function to a feature that is required by an Angular app. Technically, a service is a class with a well-defined purpose.
+
+Syntax:ng generate service servicename
+
+Interface:
+Interfaces are used to enforce type checking by defining contracts
+It is collection of properties and method declarations
+Interfaces are not supported in JavaScript and will get removed from generated JavaScript
+Interface mainly used to identify issues upfront as we proceed with coding.
+
+Syntax: interface Interface name,
+{
+Properties; 
+Method declarations;
+}
+
+6.What is two way binding and how to achieve in angular ?
+Two-way binding :
+When properties in the model get updated, so does the UI.When UI elements get updated, the changes get propagated back to the model.
+Angular should be able to capture the component's data property and set it with a single declaration, which it can with the [(ngModel)]
+
+syntax:input [(ngModel)]="...">
+
+7.What are the different ways to communicate between parent and child components and vice versa ?
+
+Parent to Child: Sharing Data via Input:
+The most common and straightforward method of sharing data. It works by using the @Input() decorator to allow data to be passed via the template.
+Child to Parent: Sharing Data via ViewChild:
+ViewChild allows a one component to be injected into another, giving the parent access to its attributes and functions. One caveat, however, is that child won’t be available until after the view has been initialized. This means we need to implement the AfterViewInit lifecycle hook to receive the data from the child.
+
+Child to Parent: Sharing Data via Output() and EventEmitter:
+Another way to share data is to emit data from the child, which can be listed to by the parent. This approach is ideal when you want to share data changes that occur on things like button clicks, form entires, and other user events.
+
+In the parent, we create a function to receive the message and set it equal to the message variable.
+
+In the child, we declare a messageEvent variable with the Output decorator and set it equal to a new event emitter. Then we create a function named sendMessage that calls emit on this event with the message we want to send. Lastly, we create a button to trigger this function.
+
+The parent can now subscribe to this messageEvent that’s outputted by the child component, then run the receive message function whenever this event occurs.
+
+8.What is RXJS and explain some important methods in rxjs ?
+
+RxJS is a javascript library that brings the concept of "reactive programming" to the web.
+
+Reactive programming is just a different way of building software applications. Essentially, your software is built to "react" to changes that happen (like click events, data being fetched, etc) instead of the typical way of writing software where we explicitly write code (aka "imperative" programming) to handle those changes.
+
+For those familiar, you can kind of think of RxJS as lodash for asynchronous data operations.
+It allows you to write software that is reusable, configurable, and asynchronous.
+RxJS also provides more robust functionality for performing even standard.
+AJAX requests. Unlike promises (the normal method of resolving AJAX requests), RxJS's Observable sequences are cancellable. They can also be easily chained, manipulated, and configured.
+
+9.What is Behaviour Subject and Observer pattern and explain with one example ?
+
+The BehaviorSubject holds the value that needs to be shared with other components. These components subscribe to data which is simple returning the BehaviorSubject value without the functionality to change the value. Here is a more detailed breakdown of asObservable. In updateDataSelection we call next and pass in a new value to the BehaviorSubject.
+
+The Observable pattern is one that allows an object, called subject, to keep track of other objects, called observers, interested in the subject state. When the subject state changes, it notifies its observers about it. The mechanics behind this are really simple.
+
+10.What are the different ways to communicate with server?
+
+Angular provides us with its own service calledHttpClient for making requests to servers. Since providers should generally be registered at the top-most module and the HttpClient service is usually used in many places throughout the app, it's acceptable to register it either in the root AppModule or the SharedModule of your application when it gets bootstrapped. We can do this by importing HttpClientModule from @angular/common/http, which contains all the providers we'll need for our application to make requests.HttpClient returns an Observable with the Response object, versus $http which returns Promises. 
+
+11.What is Angular AuthGuard? simple example
+
+Routes enable the user to navigate through the application. Sometimes the user needs to do something before being allowed access to a certain part of the application—for example, log in. Route guards can be used to control access to certain routes.
+There are two main types of route guards:
+• CanActivate: Can the user navigate to a route? In this class, you can inject the router. This is useful to navigate the user a way to another resource if the user isn’t allowed to navigate to a route.
+• CanDeactivate: Can the user move away from a route? Useful for prompting to save changes.
+They are following ways of authenticationCanActivateCanActivateChildCanDeactivateCanLoadResolve.
+
+
+12.How to write interceptors in Angular?
+
+HttpInterceptor was introduced with Angular 4.3. It provides a way to intercept HTTP requests and responses to transform or handle them before passing them along.
+
+Although interceptors are capable of mutating requests and responses, the HttpRequest and HttpResponseinstance properties are read-only, rendering them largely immutable. — Angular Docs
+
+This is because we might want to retry a request if it does not succeed at first. And immutability ensures that the interceptor chain can re-process the same request multiple times.
+
+‌13.How do you perform Error handling??
+To catch synchronous exceptions in the code, we can add a try/catch block. If an error is thrown inside try then we catch it and handle it. If we don’t do this, the script execution stops.
+
+try { throw new Error('En error happened');}catch (error) { console.error('Log error', error);}console.log('Script execution continues');
+
+14How to achieve internalization in Angular?
+
+Internationalization is the process of designing and preparing your app to be usable in different languages. Localization is the process of translating your internationalized app into specific languages for particular locales.
+
+Angular simplifies the following aspects of internationalization:
+
+Displaying dates, number, percentages, and currencies in a local format.Preparing text in component templates for translation.Handling plural forms of words.Handling alternative text
+
+i18n pipes:
+Angular pipes can help you with internationalization: the DatePipe, CurrencyPipe, DecimalPipe and PercentPipe use locale data to format data based on the LOCALE_ID.
+
+By default, Angular only contains locale data for en-US. If you set the value of LOCALE_ID to another locale, you must import locale data for that new locale. The CLI imports the locale data for you when you use the parameter --configuration with ng serve and ng build.
+
+If you want to import locale data for other languages, you can do it manually:
+
+src/app/app.module.tscontent_copyimport { registerLocaleData } from '@angular/common'; import localeFr from '@angular/common/locales/fr'; // the second parameter 'fr' is optional registerLocaleData(localeFr, 'fr');
+
+Ex:. <h1>Hello i18n!</h1>
+<h1 i18n>Hello i18n!</h1>
+
+
+
+15. How to optimize Angular app??
+
+1 Optimize main bundle with Lazy Loading
+
+2.Debug bundles with Webpack Bundle Analyzer
+
+3 Create several small shared modules
+
+4 Use Lazy Loading for images that are not visible in page
+
+5 Use virtual scrolling for large lists.
+
+6.Use FOUT instead of FOITfor fonts
+
+
+16 How to test Angular app?
+Create an Angular project with jasmine and karma
+
+As the angular team recommends we are going to user angular-cli to create our app. By doing this the configuration of jasmine and karma comes resolved for us.
+
+Install angular-cli and create a new project:
+
+npm install -g @angular/cling new angular-unit-testing
+
+When you create the project all the dependencies get installed among them everything you are going to need to create the tests.
+
+jasmine-core. Jasmine is the framework we are going to use to create our tests. It has a bunch of functionalities to allow us the write different kinds of tests.karma. Karma is a task runner for our tests. It uses a configuration file in order to set the startup file, the reporters, the testing framework, the browser among other things.The rest of the dependencies are mainly reporters for our tests, tools to use karma and jasmine and browser launchers.
+
+To run the test you only need to run the command “ng test”. This command is going to execute the tests, open the browser, show a console and a browser report and, not less important, leave the tests execution in watch mode.
+
+17.What are the new changes in Angular 7 and Angular 8?
+
+Angular 7:
+CLI Prompts. ...Application Performance. ...Angular Material & the CDK. ...Virtual Scrolling. ...Drag & Drop. ...Better Accessibility of Selects. ...Angular Elements. ...Partner Launches.
+
+Angular 8:
+Differential Loading of Modern JavaScript.
+Opt-in Ivy Preview.
+Angular Router Backwards Compatibility.
+Improved Web Worker Bundling.
+Opt-In Usage Sharing.
+Dependency Updates.
+
+18.What are the useful libraries in Angular?
+
+1. Angular components (previously Material2)
+2. NGX Bootstrap
+3. Prime NG
+4. NG Bootstrap
+5. Onsen UI
+6. Vaadin Components
+7. NG-ZORRO
+8. NG Lightning
+9. NG Semantic-UI
+10. Clarity
+11. NG2 Charts
+
+19.Can we use Redux in Angular?
+
+Redux is a predictable state container for JavaScript applications. It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. 
+
+Simply put, Redux is a state management tool. While it’s mostly used with React, it can be used with any other JavaScript framework or library. It is lightweight at 2KB (including dependencies), so you don’t have to worry about it making your application’s asset size bigger.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

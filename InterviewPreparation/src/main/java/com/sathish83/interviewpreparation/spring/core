@@ -1,0 +1,300 @@
+Inversion of Control and Dependency Injection
+.............................................
+Inversion of Control is a principle in software engineering by which the 
+control of objects or portions of a program is transferred to a container or framework
+
+The advantages of this architecture are:
+.......................................
+decoupling the execution of a task from its implementation
+making it easier to switch between different implementations
+greater modularity of a program
+greater ease in testing a program by isolating a component or mocking its dependencies and allowing components to communicate through contracts
+Inversion of Control can be achieved through various mechanisms such as: 
+Strategy design pattern, Service Locator pattern, Factory pattern, and Dependency Injection (DI).
+
+StrategyDesignPattern - Multiple implementations of strategy , Let client choose the strategy
+ex:- multiple payment optionc DC,CC,NB..
+
+Dependency Injection
+....................
+Dependency injection is a pattern through which to implement IoC, 
+where the control being inverted is the setting of object’s dependencies.
+
+Spring provides two kinds of IOC container, one is BeanFactory and other is ApplicationContext. 
+Spring IOC Container
+....................
+In the Spring framework, the IoC container is represented by the interface ApplicationContext. 
+The Spring container is responsible for
+instantiating, configuring and assembling objects known as beans, as well as managing their lifecycle.
+
+The Spring framework provides several implementations of the 
+ApplicationContext interface — ClassPathXmlApplicationContext and FileSystemXmlApplicationContext for standalone applications, and 
+WebApplicationContext for web applications.
+
+ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+Both BeanFactory and ApplicationContext provides a way to get a bean from Spring IOC container 
+by calling getBean("bean name"), but there is some difference in there working and features provided by them. 
+One difference between bean factory and application context is that former only instantiate bean when you call getBean()
+ method while ApplicationContext instantiates Singleton bean when the container is started,It doesn't wait for getBean to be called.
+
+
+
+
+
+
+
+
+Dependency Injection in Spring can be done through constructors, setters or fields.
+
+
+Setter Dependency Injection
+.............................
+When you use @Autowired on setter methods, Spring tries to perform the by Type autowiring on the method
+public class Customer {                                                                                         
+    private Person person;
+    @Autowired                                                                                                      
+    public void setPerson (Person person) {
+     this.person=person;
+    }
+}
+
+Constructor Injection
+.....................
+When you use @Autowired on a constructor, constructor injection happens
+at the time of object creation. It indicates the constructor to autowire when used as a bean.
+ One thing to note here is that only one constructor of any bean class can carry the @Autowired annotation.(since we call setter injection has a 
+ partial injection)
+@Component
+public class Customer {
+    private Person person;
+    @Autowired
+    public Customer (Person person) {          
+      this.person=person;
+    }
+}
+
+Spring autowire ways
+....................
+1)byName - For this type of autowiring,
+setter method is used for dependency injection. 
+Also the variable name should be same in the class where we will inject the dependency and in the spring bean configuration file.
+2)byType - spring container looks for the class type
+  constructor autowiring is the analogous to byType autowiring. 
+  In case of constructor autowiring, spring container fulfills constructor argument autowiring only. 
+3)no - dependency injection will not be achieved using @Autowired annotation - "default" autowiring is "no". 
+4)default - default-autowire is used at parent <beans> tag level. Using default-autowire we change the default autowire of bean in our XML configuration
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byType">
+ 
+ Spring bean scopes
+ ..................
+ Singleton(default) --Single bean object instance per spring IoC container
+ prototype - Opposite to singleton, it produces a new instance each and every time a bean is requested
+             You should know that destruction bean lifecycle methods are not called prototype scoped beans, 
+             only initialization callback methods are called. So as developer, 
+             you are responsible for clean up prototype-scoped bean instances and any resource there hold.
+ request -- A single instance will be created and available during complete lifecycle of an HTTP request.
+ session -- A single instance will be created and available during complete lifecycle of an HTTP Session.
+ application -- A single instance will be created and available during complete lifecycle of ServletContext
+             In application scope, container creates one instance per web application runtime. 
+             It is almost similar to singleton scope, with only two differences i.e.
+             application scoped bean is singleton per ServletContext, whereas singleton scoped bean is singleton per ApplicationContext. 
+             Please note that there can be multiple application contexts for single application.
+  
+  
+Spring Bean Life cycle
+.......................
+Spring bean factory is responsible for managing the life cycle of beans created through spring container. 
+The life cycle of beans consist of call back methods which can be categorized broadly in two groups:
+
+1) Post initialization call back methods
+
+Implementing the org.springframework.beans.factory.InitializingBean interface allows a bean to perform initialization 
+work after all necessary properties on the bean are set by the container. The InitializingBean interface specifies exactly one method:
+org.springframework.beans.factory.InitializingBean interface  provide Initialization callbacks method as given below.
+void afterPropertiesSet() throws Exception(not recommeded one use postconstruct and predestory annotations)
+public class Triangle implements InitializingBean
+{
+     @Override
+     public void afterPropertiesSet() throws Exception
+     {
+       //To do some initialization works here
+       System.out.println("InitializingBean init method is called for Triangle");
+     }
+}
+
+2) Pre destruction call back methods
+  
+June 30, 2012
+ 3 COMMENTS Spring Bean Life Cycle and Callbacks
+
+ 
+Previous Next
+In this article, you’ll be given an overview of Spring Bean Life cycle managed by the spring container, including understanding of Spring containers and IoC. You’ll also get an overview of the spring bean life cycle call back handlers and post processors. The Spring Framework provide several call back methods to created a bean and some method to be destroy the bean in the Spring IoC Container.
+
+
+ 
+Spring Bean Life Cycle
+@ImageSource-Youtube
+
+The Spring Framework provides several marker interfaces to change the behavior of your bean in the container; they include InitializingBean and DisposableBean. Implementing these interfaces will result in the container calling afterPropertiesSet() for the former and destroy() for the latter to allow the bean to perform certain actions upon initialization and destruction.
+Popular Tutorials
+
+Spring Tutorial
+Spring MVC Web Tutorial
+Spring Boot Tutorial
+Spring Security Tutorial
+Spring AOP Tutorial
+Spring JDBC Tutorial
+Spring HATEOAS
+Microservices with Spring Boot
+REST Webservice
+Core Java
+Hibernate Tutorial
+Spring Batch
+Understanding Spring bean life cycle
+The Spring bean life cycle is easy to understand. When a bean is instantiated, it may be required to perform some initialization to get it into a usable state. Similarly, when the bean is no longer required and is removed from the container, some cleanup may be required.
+Though, there is lists of the activities that take place behind the scenes between the time of bean Instantiation and its destruction, but this chapter will discuss only two important bean life cycle callback methods which are required at the time of bean initialization and its destruction.
+Beans can be notified after creation and all properties are set, and before they are destroyed and removed from the bean container. This involves specifying the callback method to be invoked by the container. This is done in XML by specifying attributes init-method=”myinit”, for the initialization callback, and destroy-method=”mydestroy”, for the destroy callback. “myinit” and “cleanUp” are names of instance methods in the bean class.
+Initialization callbacks
+Implementing the org.springframework.beans.factory.InitializingBean interface allows a bean to perform initialization work after all necessary properties on the bean are set by the container. The InitializingBean interface specifies exactly one method:
+org.springframework.beans.factory.InitializingBean interface  provide Initialization callbacks method as given below..
+void afterPropertiesSet() throws Exception
+Now we can implements above interface and do some initialization functionality with in this method. As below..
+public class Triangle implements InitializingBean
+{
+     @Override
+     public void afterPropertiesSet() throws Exception
+     {
+       //To do some initialization works here
+       System.out.println("InitializingBean init method is called for Triangle");
+     }
+}
+Generally, the use of the InitializingBean interface can be avoided (and is discouraged since it unnecessarily couples the code to Spring). A bean definition provides support for a generic initialization method to be specified. In the case of XML-based configuration metadata, this is done using the ‘init-method’ attribute. For example, the following definition:
+In the case of XML-based configuration metadata, we can use the init-method attribute to specify the name of the method that has a void no-argument signature. For example:
+<bean class="com.dineshonjava.sdnext.callbackLifecycle.tutorial.Triangle" id="triangle" init-method="myInit"></bean>
+ 
+
+Now following has myInit method in class.
+public class Triangle
+{
+  public void myInit()
+  {
+     //To do some initialization works here
+     System.out.println("My init method is called for Triangle");
+  }
+}
+Now using Java annotations can also be used to declare bean life cycle callbacks.
+public class Triangle
+{
+  //init callback
+  @PostConstruct
+  public void myInit()
+  
+  {
+     //To do some initialization works here
+     System.out.println("My init method is called for Triangle");
+  }
+}
+Destruction callbacks
+
+Implementing the org.springframework.beans.factory.DisposableBean interface allows a bean to get a callback when the container containing it is destroyed. The DisposableBean interface specifies one method:
+void destroy() throws Exception
+
+ 
+In Spring framework, we can manage lifecycle of a bean by using method-level annotations @PostConstruct and @PreDestroy.
+
+The @PostConstruct annotation is used on a method that needs to be executed after dependency injection is done to perform any initialization.
+
+The @PreDestroy annotation is used on methods as a callback notification to signal that the instance is in the process of being removed by the container.
+  @PostConstruct
+   public void init() {
+      map.put("host", "mail.example.com");
+      map.put("port", "25");
+      map.put("from", "example@boraji.com");
+      System.out.println("Inside init method - "+map);
+   }
+
+   @PreDestroy
+   public void destroy() {
+      map.clear();
+      System.out.println("Inside destroy method - "+map);
+   }
+   
+Java 9+
+Note that both @PostConstruct and @PreDestroy annotations are part of Java EE.
+And since Java EE has been deprecated in Java 9 and removed
+in Java 11 we have to add an additional dependency to use these annotations:
+
+<dependency>
+    <groupId>javax.annotation</groupId>
+    <artifactId>javax.annotation-api</artifactId>
+    <version>1.3.2</version>
+</dependency>  
+   
+   
+   
+ 
+Name some of the Design Patterns used in the Spring Framework?
+
+Singleton Pattern: Singleton-scoped beans
+Factory Pattern: Bean Factory classes
+Prototype Pattern: Prototype-scoped beans
+Adapter Pattern: Spring Web and Spring MVC
+Proxy Pattern: Spring Aspect Oriented Programming support
+Template Method Pattern: JdbcTemplate, HibernateTemplate, etc.
+Front Controller: Spring MVC DispatcherServlet
+Data Access Object: Spring DAO support
+Model View Controller: Spring MVC       
+
+Difference between component and controller annotation
+....................................................
+They are nothing but the specialized form of @Component annotation for certain situations. 
+Instead of using @Component on a controller class in Spring MVC, we use @Controller, which is more readable and appropriate.
+For example, DispatcherServlet will look for @RequestMapping on classes
+ which are annotated using @Controller but not with @Component.
+This means @Component and @Controller are same with respect to bean 
+creation and dependency injection but later is a specialized form of former.
+ Even if you replace @Controller annotation with @Compoenent, 
+ Spring can automatically detect and register the controller class but it may not work as you expect with respect to request mapping.
+Read more: https://javarevisited.blogspot.com/2017/11/difference-between-component-service.html#ixzz5s4YYRZ5D
+
+
+Spring MVC flow
+...............
+Step 1: First request will be received by DispatcherServlet
+Step 2: DispatcherServlet will take the help of HandlerMapping and get to know the Controller class name associated with the given request
+Step 3: So request transfer to the Controller, and then controller will process the request by executing appropriate methods and
+ returns ModeAndView object (contains Model data and View name) back to the DispatcherServlet
+Step 4: Now DispatcherServlet send the model object to the ViewResolver to get the actual view page
+Step 5: Finally DispatcherServlet will pass the Model object to the View page to display the result
+
+if a user tries to access /home URL and
+ HomeController returns "home" then DispatcherServlet will 
+ consult InternalResourceViewResolver and it will use prefix and suffix to find the actual physical view which is integral to a web application.
+ 
+
+Annotations used in Spring
+.........................
+1) @Primary -- In some cases, we need to register more than one bean of the same type.
+	          Spring throws NoUniqueBeanDefinitionException if we try to run the application.
+              To access beans with the same type we usually use @Qualifier(“beanName”) annotation.
+              We apply it at the injection point along with @Autowired. In our case, we select the beans at the configuration phase so @Qualifier can’t be applied here. We can learn more about @Qualifier annotation by following the link.
+              To resolve this issue Spring offers the @Primary annotation.(https://www.baeldung.com/spring-primary)
+
+2) Annotation │ Meaning                                             │
+├────────────┼─────────────────────────────────────────────────────┤
+│ @Component │ generic stereotype for any Spring-managed component │
+│ @Repository│ stereotype for persistence layer                    │
+│ @Service   │ stereotype for service layer                        │
+│ @Controller│ stereotype for presentation layer (spring-mvc) 
+......................................................................................
+
+3) @RestController = @Controller + @ResponseBody
+
+
+
+

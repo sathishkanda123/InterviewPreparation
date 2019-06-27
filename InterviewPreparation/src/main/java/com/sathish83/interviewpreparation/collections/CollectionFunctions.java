@@ -1,8 +1,10 @@
 package com.sathish83.interviewpreparation.collections;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class CollectionFunctions {
 
@@ -12,9 +14,8 @@ public class CollectionFunctions {
 		arrayList();
 		linkedList();
 		stack();
-		CopyOnWriteArrayList();
-		dequeue();
 		arrayDequeue();
+		CopyOnWriteArrayList();
 		blockingQueue();
 		hashSet();
 		treeSet();
@@ -67,15 +68,6 @@ public class CollectionFunctions {
 		
 	}
 
-	private static void blockingQueue() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private static void CopyOnWriteArrayList() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private static void concurrentCollection() {
 		// TODO Auto-generated method stub
@@ -88,43 +80,58 @@ public class CollectionFunctions {
 	}
 
 	private static void treeMap() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	private static void linkedHashMap() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	private static void hashMap() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	private static void treeSet() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	private static void hashSet() {
+		
+	}
+
+	private static void blockingQueue() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	private static void CopyOnWriteArrayList() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	private static void arrayDequeue() {
-		// TODO Auto-generated method stub
 		
+		ArrayDeque<String> ad = new ArrayDeque<String>();
+		ad.push("Algapan");
+		ad.push("Sindhu");
+		ad.push("Tom");
+		ad.push("Tibin");
+		ad.push("Nishanth");
+		System.out.println("ArrayDequeu Listing the values...");
+		ad.forEach(val->System.out.println(val));
+		System.out.println();
 	}
 
-	private static void dequeue() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private static void stack() {
-		// TODO Auto-generated method stub
 		
+		Stack<String> stackList = new Stack<String>();
+		stackList.add("Yathi");
+		stackList.add("Tiru");
+		stackList.add("Raghava");
+		stackList.add("Krish");
+		System.out.println("Stack Listing the values...");
+		stackList.forEach(System.out::println);
+		System.out.println();
 	}
 
 	private static void linkedList() {
@@ -142,10 +149,10 @@ public class CollectionFunctions {
 		List<String> arrayList= new ArrayList<>();
 		arrayList.add("Sathish");
 		arrayList.add("Shadhap");
-		arrayList.add("Tom");
+		arrayList.add("Jaana");
+		arrayList.set(0, "SathishKumar");
 		System.out.println("ArrayList Listing the values...");
 		arrayList.forEach(System.out::println);
 		System.out.println();
 	}
-
 }

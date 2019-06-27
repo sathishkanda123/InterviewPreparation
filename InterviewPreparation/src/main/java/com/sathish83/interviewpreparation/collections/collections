@@ -1,6 +1,7 @@
 List - Array List , LinkedList, Vector , Stack
 ....
 It can have duplicate values
+It can have multiple null values
 
 Array List
 ..........
@@ -10,13 +11,40 @@ RandomAccessed
 Better to for storing and accessing data
 Manipulation is slow , since its internally uses array, if any element removed from an array , all the bits are shifted in memory
 
+InternalImplementationOfArrayList
+...................................
+ArrayList grows dynamically as the elements are added to it.
+If the size of the current elements (including the new element to be added to the ArrayList) is 
+greater than the maximum size of the array then increase the size of array.
+But the size of the array can not be increased dynamically.
+So, what happens internally is, a new Array is created and the old array is copied into the new array(Arrays.copyOf(oldarray,length)).
+int newCapacity = oldCapacity + (oldCapacity >> 1);
+
+
 LinkedList
 ..........
 Using doubley linked list to store elements
 Store duplicate values
-Maintains Inservtion order
+Maintains Insertion order
 Non synchronized
+Items can be added or removed from the middle of the list
 Manipulation is fast , because no shifting is required
+There is no "random" access - it is impossible to reach the nth item in the array without first iterating over all items up 
+until that item. This means 
+we have to start from the beginning of the list and count how many times we advance in the list until we get to the desired item.
+
+InternalImplementationOfLinkedList
+.................................
+LinkedList class in Java implements List and Deque interfaces and LinkedList implements it using doubly linkedlist.
+In the implementation of the LinkedList class in Java there is a private class Node which provides the structure for a node
+in a doubly linked list. 
+It has item variable for holding the value and two reference to Node class itself for connecting to next and previous nodes.
+Though there are many methods with in the LinkedList class 
+but here I'll try to explain the internal working of the LinkedList, how references are created and shuffled using these 3 methods -
+
+private void linkFirst(E e)
+void linkLast(E e)
+public void add(int index, E element)
 
 
 ArrayList vs LinkedList
@@ -38,27 +66,45 @@ only references in surrounding elements will change.
 Memory usage
 ...........
 A LinkedList consumes more memory than an ArrayList because of every node in a LinkedList stores two references,
- one for its previous element and one for its next element, whereas ArrayList holds only data and its index.
+one for its previous element and one for its next element, whereas ArrayList holds only data and its index.
+
+Stack
+.....
+last-in-first-out
+
+Methods in Stack class
+//////////////////////
+Object push(Object element) : Pushes an element on the top of the stack.
+Object pop() : Removes and returns the top element of the stack. An ‘EmptyStackException’ exception is thrown if we call pop() when the invoking stack is empty.
+Object peek() : Returns the element on the top of the stack, but does not remove it.
+boolean empty() : It returns true if nothing is on the top of the stack. Else, returns false.
+int search(Object element) : It determines whether an object exists in the stack. If the element is found, it returns the position of the element from the top of the stack. Else, it returns -1.
 
 
 
-
-Queue - FIFO - Priority queue, Dequeu and ArrayDeque
+Queue - FIFO - Priority queue, Dequeu(interface) and ArrayDeque
 .........
-
 PriorityQueue
 ............
 Defined in ordered list
 Not allowed null values
 
-Dequeue
-........
-Double end queue - can remove and add on both sides
 
 ArrayDequeu
 ...........
 Queueu + Dequeueu - faster than ArrayList and stack and has no capacity restrictions
-
+Unlike Queue, we can add or remove elements from both sides.
+Null elements are not allowed in the ArrayDeque.
+ArrayDeque is not thread safe, in the absence of external synchronization.
+ArrayDeque has no capacity restrictions.
+ArrayDeque is faster than LinkedList and Stack.
+offerFirst() - is added in first and pollLast() - remove from the queue from last
+boolean add(object)-	It is used to insert the specified element into this deque and return true upon success.
+boolean offer(object)	-It is used to insert the specified element into this deque.
+Object remove()	-It is used to retrieves and removes the head of this deque.
+Object poll()-	It is used to retrieves and removes the head of this deque, or returns null if this deque is empty.
+Object element()	-It is used to retrieves, but does not remove, the head of this deque.
+Object peek()-It is used to retrieves, but does not remove, the head of this deque, or returns null if this deque is empty.
 
 Set - Hash set , linked list and Tree set 
 ...
