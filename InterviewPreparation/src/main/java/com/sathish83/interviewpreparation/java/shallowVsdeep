@@ -1,0 +1,55 @@
+A reference copy, as the name implies, creates a copy of a reference variable pointing to an object. 
+ex: - obj1 = obj2
+
+An object copy creates a copy of the object itself. So if we again copied our car object, we would create a copy of the object itself, as well as a second reference variable referencing that copied object.
+
+
+Shallow Copy
+...........
+A shallow copy of an object copies the ‘main’ object, but doesn’t copy the inner objects.
+The ‘inner objects’ are shared between the original object and its copy. 
+
+The problem with the shallow copy is that the two objects are not independent.
+If you modify the Name object of one Person, the change will be reflected in the other Person object.
+
+Let’s apply this to an example. Say we have a Person object with a reference variable mother; 
+then, we make a copy of mother, creating a second Person object, son. If later on in the code, 
+the son tries to moveOut() by modifying his Address object, the mother moves with him!
+
+public class Person {
+    private Name name;
+    private Address address;
+    public Person(Person originalPerson) {
+         this.name = originalPerson.name;
+         this.address = originalPerson.address;
+    }
+[…]
+}
+
+
+
+Person mother = new Person(new Name(…), new Address(…));
+[…]
+Person son  = new Person(mother);
+[…]
+son.moveOut(new Street(…), new City(…));
+
+
+Deep Copy
+........
+a deep copy is a fully independent copy of an object. If we copied our Person object, we would copy the entire object structure.
+A change in the Address object of one Person wouldn’t be reflected in the other object 
+
+public class Person {
+    private Name name;
+    private Address address;
+    public Person(Person otherPerson) {
+         this.name    =  new Name(otherPerson.name); // creates with new
+         this.address =  new Address(otherPerson.address); // creates with new
+    }
+
+}
+
+
+
+

@@ -1,0 +1,35 @@
+https://www.geeksforgeeks.org/different-ways-create-objects-java/
+
+Following are some ways in which you can create objects in Java:
+
+1) New Keyword
+
+2) Using New Instance
+   If we know the name of the class & if it has a public default constructor we can create an object –Class.forName.
+   We can use it to create the Object of a Class. Class.forName actually loads the Class in Java but doesn’t create any Object. 
+   To Create an Object of the Class you have to use the new Instance Method of the Class.
+
+3) Clone Method
+
+Whenever clone() is called on any object, the JVM actually creates a new object and copies all content 
+of the previous object into it. 
+Creating an object using the clone method does not invoke any constructor.
+To use clone() method on an object we need to implement Cloneable and define the clone() method in it.
+
+4) Using Deserilization
+.......................
+Whenever we serialize and then deserialize an object, JVM creates a separate object. In deserialization, JVM doesn’t use any constructor to create the object.
+To deserialize an object we need to implement the Serializable interface in the class.
+
+
+5) Using NewInstance method of constructor class
+................................................
+This is similar to the newInstance() method of a class. There is one newInstance() method in the
+java.lang.reflect.Constructor class which we can use to create objects. 
+It can also call parameterized constructor, and private constructor by using this newInstance() method.
+
+Both newInstance() methods are known as reflective ways to create objects. In fact newInstance() method of Class internally
+ uses newInstance() method of Constructor class.
+ 
+ 
+ 

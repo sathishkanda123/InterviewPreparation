@@ -1,0 +1,44 @@
+https://www.javatpoint.com/java-8-features
+
+Functional Interfaces
+....................
+only one abstract method
+Many default methods
+
+Lambda expressions
+.................
+Lambda expressions basically express instances of functional interfaces
+It provides a clear and concise way to represent one method interface using an expression.
+
+Enable to treat functionality as a method argument, or code as data
+A function that can be created without belonging to any class.
+A lambda expression can be passed around as if it was an object and executed on demand.
+
+Exprsession syntax
+.................
+(argument-list) -> {body}  
+
+
+
+Method References
+.................
+Method reference is used to refer method of functional interface. It is compact and easy form of lambda expression. 
+There are following types of method references in java:
+
+Reference to a static method.
+ContainingClass::staticMethodName
+
+Reference to an instance method.
+Reference to a constructor.
+ContainingClass::new
+
+Java Optional Class
+..................
+
+Java introduced a new class Optional in jdk8. It is a public final class and used to deal with NullPointerException in Java application. 
+
+
+
+
+
+

@@ -28,24 +28,22 @@ public class ShallowCopy {
 		
 		JobSeeker jobseeker2 = new JobSeeker();
 		jobseeker2.setName("Shadhap");
-		jobseeker2.setExperience(3);
 		jobseeker2.setLocaltion(new Location("Chennai"));
 		jobseeker2.setSkills(Arrays.asList("Java","SpringBoot","DataStructures"));
 		Company c2 = new Company();
 		c2.setCompanyName("TCS");
 		c2.setInterviewLocation(new Location("Chennai-Sholingnalur"));
 		jobseeker2.setAppliedCompany(c2);
-		
-		jobseeker1=jobseeker2;
-		jobseeker1.setName("Lekitha");
+		jobseeker1=jobseeker2; // when ever we assigned all values from j2 to j1 // reference copy or copy constructor also
+		jobseeker1.setName("Lekitha"); // both j1 and j2 will change
+		jobseeker1.getAppliedCompany().setCompanyName("Infosys"); // both j1 and j2 will change
 		System.out.println("Jobseeker1Name.." + jobseeker1.getName());
-		System.out.println("Jobseeker2Name.." + jobseeker2.getName());
+		System.out.println("Jobseeker2Name.." + jobseeker2.getName()); 
 		System.out.println("Jobseeker Applied Company Name.." + jobseeker1.getAppliedCompany().getCompanyName());
-		System.out.println("Jobseeker Stying Location.." + jobseeker1.getLocaltion().getLocationName());
-		System.out.println("Jobseeker Applied Location.." + jobseeker1.getAppliedCompany().getInterviewLocation().getLocationName());
-		System.out.println("HashCode"+"Jobseeker1"+jobseeker1.hashCode()+"---"+"JobSeeker2"+jobseeker2.hashCode());
-	   
-			
+		System.out.println("Jobseeker2CompanyName.." + jobseeker2.getAppliedCompany().getCompanyName()); // jobsekker 2 also changed
+		System.out.println("Jobseeker1Exp.." + jobseeker1.getExperience());
+		System.out.println("Jobseeker2Exp.." + jobseeker2.getExperience());		
+	    
 	}
 
 }

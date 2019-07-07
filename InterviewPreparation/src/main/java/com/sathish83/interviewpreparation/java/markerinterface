@@ -1,0 +1,20 @@
+It is an empty interface (no field or methods).
+ Examples of marker interface are Serializable, Clonnable and Remote interface. All these interfaces are empty interfaces.
+ 
+A marker interface is an interface that has no methods or constants inside it.
+It provides run-time type information about objects, 
+so the compiler and JVM have additional information about the object.
+ 
+ Marker Interfaces vs. Annotations
+ ................................
+ 
+ 
+  interfaces allow us to take advantage of polymorphism. 
+  As a result, we can add additional restrictions to the marker interface.
+  
+  
+  Marker Interfaces vs. Typical Interfaces
+  .........................................
+  
+  
+ 

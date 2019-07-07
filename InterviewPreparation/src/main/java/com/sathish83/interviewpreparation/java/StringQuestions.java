@@ -7,7 +7,44 @@ public class StringQuestions {
 
 	
 	public static void main(String[] args) {
+	
+		String s= "InterviewPreparation";
 		
+		System.out.println("Get the value from particualr Index--"+s.charAt(19));
 		
+		System.out.println("Get the length of the string--"+s.length());
+		
+		System.out.println("Get the Substring of the string--"+s.substring(1));
+		
+		System.out.println("Get the Substring of the string--"+s.substring(3, 6));
+		
+		System.out.println("Contains--"+s.contains("Int"));
+		
+		System.out.println("Join Method--"+String.join("###", "Interview Preparation","Sathish83"));
+	
+	 // String buffer
+		
+		StringBuffer sb = new StringBuffer(s);
+		
+		System.out.println("String BUffer Reverse"+sb.reverse());
+	
+	// string builder
+		
+		StringBuilder sbu= new StringBuilder(s);
+		
+		System.out.println("String builder revers"+sbu.reverse());
+
+		String reverse="";
+		
+		for(int i = s.length()-1;i>=0;i--) {
+			
+           reverse = reverse+ s.charAt(i);
+			
+		}
+		
+		System.out.println("FInal reverse using String"+reverse);
+	
 	}
+	
+	
 }

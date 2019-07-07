@@ -1,0 +1,45 @@
+Serialization is a mechanism of converting the state of an object into a byte stream.
+Deserialization is the reverse process where the byte stream is used to recreate the actual Java object in memory. 
+This mechanism is used to persist the object.
+
+Serializable is a marker interface (has no data member and method). It is used to “mark” java classes so that objects of these classes may get certain capability.
+
+Points to remember
+1. If a parent class has implemented Serializable interface then child class doesn’t need to implement it but vice-versa is not true.
+2. Only non-static data members are saved via Serialization process.
+3. Static data members and transient data members are not saved via Serialization process.So, if you don’t want to save value of a non-static data member then make it transient.
+4. Constructor of object is never called when an object is deserialized.
+5. Associated objects must be implementing Serializable interface.
+
+
+SerialVersionUID
+................
+The Serialization runtime associates a version number with each Serializable class called a SerialVersionUID, which is used during Deserialization to verify that sender and reciever of a serialized object have loaded classes for that object which are compatible with respect to serialization. If the reciever has loaded a class for the object that has different UID than that of corresponding sender’s class, the Deserialization will result in an InvalidClassException.
+ A Serializable class can declare its own UID explicitly by declaring a field name.
+ A Serializable class can declare its own UID explicitly by declaring a field name.
+It must be static, final and of type long.
+i.e- ANY-ACCESS-MODIFIER static final long serialVersionUID=42L;
+
+
+
+Externalization
+...............
+
+Externalization serves the purpose of custom Serialization, where we can decide what to store in stream.
+
+Externalizable interface present in java.io, is used for Externalization which extends Serializable interface. It consist of two methods which we have to override to write/read object into/from stream which are-
+
+
+// to read object from stream
+void readExternal(ObjectInput in) 
+
+// to write object into stream
+void writeExternal(ObjectOutput out) 
+
+Key differences between Serializable and Externalizable
+
+Implementation : Unlike Serializable interface which will serialize the variables in object with just by implementing interface, here we have to explicitly mention what fields or variables you want to serialize.
+Methods : Serializable is marker interface without any methods. Externalizable interface contains two methods: writeExternal() and readExternal().
+Process: Default Serialization process will take place for classes implementing Serializable interface. Programmer defined Serialization process for classes implementing Externalizable interface.
+Backward Compatibility and Control: If you have to support multiple versions, you can have full control with Externalizable interface. You can support different versions of your object. If you implement Externalizable, it’s your responsibility to serialize super class.
+public No-arg constructor: Serializable uses reflection to construct object and does not require no arg constructor. But Externalizable requires public no-arg constructor

@@ -1,0 +1,78 @@
+Encapsulation: 
+Wrapping code and data together into a single unit.
+Class is an example of encapsulation, because it wraps the method and property.
+hides variables or some implementation that may be changed so often in a
+class to prevent outsiders access it directly. They must access it via getter and setter methods.
+Encapsulation is a technique for protecting data
+from misuse by the outside world, which is referred as ‘information hiding’ or ‘data hiding’.
+
+
+Abstraction:
+
+ is used to hiding something too but in a higher degree(class, interface). 
+ Clients use an abstract class(or interface) do not care about who or which it was, they just need to know what it can do.
+ 
+Abstraction, as a process, denotes the
+extracting of the essential details about an item, or a group of items,
+while ignoring the inessential details
+
+
+OverLoading
+............
+Overloading allows different methods to have the same name, 
+but different signatures where the signature can differ by the number of 
+input parameters or type of input parameters or both. Overloading is related to compile time (or static) polymorphism.
+
+Priority wise, compiler take these steps:
+
+Type Conversion but to higher type(in terms of range) in same family.
+Type conversion to next higher family(suppose if there is no long data type available for an int data type, then it will search for float data type).
+
+
+
+
+OverRiding
+..........
+Overriding is a feature that allows a subclass or child class to provide a specific implementation 
+of a method that is already provided by one of its super-classes or parent classes. When a method in a subclass has the same name, same parameters or signature and same return type(or sub-type) as a method in its super-class,
+ then the method in the subclass is said to override the method in the super-class.
+
+Rules for OverRiding
+.....................
+Private methods cant be overriden
+final methods cant be overriden
+
+static methods cant be override
+..............................
+If a derived class defines a static method with same signature as a static method in base class, 
+the method in the derived class hides the method in the base class.
+
+Overriding at exception Handling
+................................
+Rule#1 : If the super-class overridden method does not throws an exception, subclass overriding method can only throws the unchecked exception, throwing checked exception will lead to compile-time error.
+Rule#2 : If the super-class overridden method does throws an exception, subclass overriding method can only throw same, subclass exception. Throwing parent exception in Exception hierarchy will lead to compile time error.Also there is no issue if subclass overridden method is not throwing any exception.
+
+
+Abstract
+.............
+abstract is a non-access modifier in java applicable for classes, methods but not variables. 
+It is used to achieve abstraction which is one of the pillar of Object Oriented Programming(OOP)
+
+The following are various illegal combinations of other modifiers for methods with respect to abstract modifier :
+final
+abstract native
+abstract synchronized
+abstract static
+abstract private
+abstract strictfp
+
+
+Interfaces
+..........
+It is used to achieve total abstraction.
+Since java does not support multiple inheritance in case of class, but by using interface it can achieve multiple inheritance .
+It is also used to achieve loose coupling.
+Interfaces are used to implement abstraction. So the question arises why use interfaces when we have abstract classes?
+The reason is, abstract classes may contain non-final variables, whereas variables in interface are final, public and static.
+
+

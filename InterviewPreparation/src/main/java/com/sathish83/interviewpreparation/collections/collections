@@ -81,6 +81,20 @@ boolean empty() : It returns true if nothing is on the top of the stack. Else, r
 int search(Object element) : It determines whether an object exists in the stack. If the element is found, it returns the position of the element from the top of the stack. Else, it returns -1.
 
 
+CopyOnWriteArrayList
+....................
+CopyOnWriteArrayList class is introduced in JDK 1.5, which implements List interface. It is enhanced version of ArrayList in which all modifications (add, set, remove, etc) 
+are implemented by making a fresh copy.
+
+The design of the CopyOnWriteArrayList uses an interesting technique to make it thread-safe without a 
+need for synchronization. When we are using any of the modify methods – 
+such as add() or remove() – the whole content of the CopyOnWriteArrayList is copied into the new internal copy.
+you can see diffrence in opertaion on next
+
+
+Due to this simple fact, we can iterate over the list in a safe way, even when concurrent modification is happening.
+but if we iterate using Iterator and if you iterate.remove its throws java.lang.UnsupportedOperationException
+ 
 
 Queue - FIFO - Priority queue, Dequeu(interface) and ArrayDeque
 .........
@@ -119,13 +133,141 @@ Hash map and LinkedHashmap allow null keys and values but tree map doesn't allow
 LinkedHashmap - maintains insertion order
 TreeMap- ascending order
 
+Internal Implementation of Hash Map
+...................................
+https://www.geeksforgeeks.org/internal-working-of-hashmap-java/
+HashMap contains an array of Node and Node can represent a class having following objects :
+
+int hash
+K key
+V value
+Node next
+
+Hashing
+.......
+Hashing is a process of converting an object into integer form by using the method hashCode()
+
+Buckets
+.......
+A bucket is one element of HashMap array. It is used to store nodes. Two or more nodes can have the same bucket
+In that case link list structure is used to connect the nodes. 
+capacity = number of buckets * load factor
+
+Index Calculation in Hashmap
+............................
+Hash code of key may be large enough to create an array. hash code generated may be in the range of integer and 
+if we create arrays for such a range, then it will easily cause outOfMemoryException. 
+So we generate index to minimize the size of array. Basically following operation is performed to calculate index.
+index = hashCode(key) & (n-1).
+Ex- Inserting Key-Value Pair: Putting one key-value pair in above HashMap
+map.put(new Key("vishal"), 20);
+
+Steps:
+
+Calculate hash code of Key {“vishal”}. It will be generated as 118.
+Calculate index by using index method it will be 6.
+Create a node object as :
+{
+  int hash = 118
+
+  // {"vishal"} is not a string but 
+  // an object of class Key
+  Key key = {"vishal"}
+
+  Integer value = 20
+  Node next = null
+}
+
+
+Place this object at index 6, if no other object is presented there.
+
+In Case of collision: Now, putting another pair that is,
+
+If any a node object is found at the index 6 – this is a case of collision.
+In that case, check via hashCode() and equals() method that if both the keys are same.
+If keys are same, replace the value with current value.
+Otherwise connect this node object to the previous node object via linked list and both are stored at index 6.
+
+Using get method()
+..................
+Fetch the data for key sachin:
+map.get(new Key("sachin"));
+Calculate hash code of Key {“vaibhav”}. It will be generated as 118.
+Calculate index by using index method it will be 6.
+Go to index 6 of array and compare first element’s key with given key. If both are equals then return the value, otherwise check for next element if it exists.
+In our case it is not found as first element and next of node object is not null.
+If next of node is null then return null.
+If next of node is not null traverse to the second element and repeat the process 3 until key is not found or next is not null.
+
+                HashMap Changes in Java 8
+                .........................
+                
+As we know now that in case of hash collision entry objects are stored as a node in a linked-list and equals() method
+is used to compare keys. That comparison to find the correct key with in a linked-list is a 
+linear operation so in a worst case scenario the complexity becomes O(n).
+To address this issue, Java 8 hash elements use balanced trees
+instead of linked lists after a certain threshold is reached. Which means HashMap starts with storing Entry objects in linked list but after the number of items in a hash becomes larger than a certain threshold, the hash will change from using a linked list to a balanced tree, 
+which will improve the worst case performance from O(n) to O(log n).
+
 ConcurrentHashMap
 ................
+https://javabypatel.blogspot.com/2016/09/concurrenthashmap-interview-questions.html
 
+ConcurrentHashMap class is introduced in JDK 1.5, 
+which implements ConcurrentMap as well as Serializable interface also. 
+ConcureentHashMap is enhancement of HashMap as we know that while dealing with Threads in our application 
+At a time any number of threads are applicable for read operation without
+locking the ConcurrentHashMap object which is not there in HashMap.
+Default concurrency-level of ConcurrentHashMap is 16.
+In ConcurrentHashMap, at a time any number of threads can perform retrieval operation 
+but for updation in object, thread must lock the particular segment in which thread want to operate.
+This type of locking mechanism is known as Segment locking or bucket locking.
+Hence at a time 16 updation operations can be performed by threads.
+null insertion is not possible in ConcurrentHashMap as key or value.
 
+Performance and Thread safety are 2 parameter on which ConcurrentHashMap is focused.
+Can we use Hashtable in this scenario?
 
+No. Hashtable is thread safe but give poor performance in 
+case of multiple thread reading from hashtable because all methods of 
+Hashtable including get() method is synchronized and due to which invokation 
+to any method has to wait until any other thread working on hashtable complete its operation(get, put etc).
 
+ConcurrentHashMap added one Array on top of it and each index of this additional array represents complete HashMap. Additional array is called Segment in ConcurrentHashMap.
 
+Putting key-value pair: 
+
+1. Putting key-value pair in ConcurrentHashMap requires first identifying exact index in 
+    Segment array. 
+    (Once Segment array index is identified, Now flow will be exactly same as putting the data in 
+    hashmap/hashtable.) 
+2. After identifying index in Segment array, next task is to identify index of internal bucket/array 
+    present in internal hashmap as shown in figure above. 
+3. After identying bucket(internal array index), iterate key-value pairs and check each key with key 
+    to store, wherever match is found replace stored value with value to store.
+    If there is no match, store key-value pair at the last of list.
+
+Getting key-value pair:
+.....................
+1. Getting key-value pair in ConcurrentHashMap requires first identifying exact index in 
+    Segment array. 
+    (Once Segment array index is identified, Now flow will be exactly same as getting the data from 
+    hashmap/hashtable.) 
+2. After identifying index in Segment array, next task is to identify index of internal bucket/array 
+    present in internal hashmap as shown in figure above. 
+3. After identying bucket(internal array index), iterate key-value pairs and match each key with 
+    given key, wherever match is found return value stored against key.
+    If there is no match, return null.
+
+ConcurrentHashMap works bit different here and instead of locking complete map object it Locks per Segment. 
+It means instead of single map wide lock, it has multiple Segment level lock.
+
+So 2 Threads can execute put operation simultaneously by acquiring lock on different Segments.
+
+Thread T1 calls concurrentHashMap.put(key, value), It acquires lock on say Segment 1 and invokes put method.
+Thread T2 calls concurrentHashMap.put(key, value), It acquires lock on say Segment 4 and invokes put method.
+
+Both threads doesn't interfere with each other and both can proceed simultaneously as they are working on separate Segment locks.
 
 
 

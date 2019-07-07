@@ -1,0 +1,9 @@
+what is System.out.println
+.............................
+  System – is a final class in java.lang package.
+  
+  out – is a static member field of System class and is of type PrintStream
+  
+  println – is a method of PrintStream class. println prints the argument passed to the standard console and a newline. 
+  
+  

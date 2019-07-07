@@ -1,0 +1,25 @@
+OutputStream
+............
+Java application uses an output stream to write data to a destination
+OutputStream class is an abstract class. It is the superclass of all classes representing an output stream of bytes. 
+An output stream accepts output bytes and sends them to some sink.
+
+OutPutStream
+.............
+
+ 1) FileOutPutStream
+ 2) ByteArrayOutPutStream
+ 3) FilterOutPutStream
+    a) DataOutPutStream
+    b) BufferedOutPutStream
+    c) PrintStream
+ 4) PipedOutStream
+ 5) ObjectOutPutStream   
+
+
+
+InputStream
+...........
+Java application uses an input stream to read data from a source
+InputStream class is an abstract class. It is the superclass of all classes representing an input stream of bytes.
+

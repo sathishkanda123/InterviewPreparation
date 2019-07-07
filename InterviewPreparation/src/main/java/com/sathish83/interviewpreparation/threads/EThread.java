@@ -8,10 +8,8 @@ public class EThread extends Thread{
 	}
 	
 	public static void main(String[] args) {
-		
 		EThread et = new EThread();
 		et.start();
-		
 	}
 	
 }

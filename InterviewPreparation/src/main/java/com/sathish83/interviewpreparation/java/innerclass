@@ -1,0 +1,60 @@
+Java inner class or nested class is a class which is declared inside the class or interface.
+Additionally, it can access all the members of outer class including private data members and methods.
+
+There are basically three advantages of inner classes in java. They are as follows:
+
+
+1) Nested classes represent a special type of relationship that is it can access all the members (data members and methods) of outer class including private.
+
+2) Nested classes are used to develop more readable and maintainable code because it logically group classes and interfaces in one place only.
+
+3) Code Optimization: It requires less code to write.
+
+Types
+.....
+
+A) Non-static nested class (inner class)
+     Member inner class
+     Anonymous inner class
+     Local inner class
+B) Static nested class
+
+
+1) Member Inner class
+....................
+A non-static class that is created inside a class but outside a method is called member inner class.
+
+2) Anonymous InnerClass
+......................
+It is an inner class without a name and for which only a single object is created. 
+An anonymous inner class can be useful when making an instance of an object with certain “extras” such as overloading methods of a class or interface, without having to actually subclass a class.
+
+3) Local Inner Class
+....................
+A class i.e. created inside a method is called local inner class in java. If you want to invoke the methods of local inner class, you must instantiate this class inside the method.
+Local variable can't be private, public or protected.
+Local inner class cannot be invoked from outside the method.
+Local inner class cannot access non-final local variable till JDK 1.7. Since JDK 1.8, it is possible to access the non-final local variable in local inner class.
+
+4) Static nested class
+......................
+
+A static class i.e. created inside a class is called static nested class in java.
+It cannot access non-static data members and methods. It can be accessed by outer class name.
+
+It can access static data members of outer class including private.
+Static nested class cannot access non-static (instance) data member or method.
+
+
+
+
+
+
+
+
+
+
+
+
+
+

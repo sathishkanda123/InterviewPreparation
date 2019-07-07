@@ -2,6 +2,7 @@ package com.sathish83.interviewpreparation.collections;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
@@ -70,7 +71,6 @@ public class CollectionFunctions {
 
 
 	private static void concurrentCollection() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -104,8 +104,21 @@ public class CollectionFunctions {
 	}
 
 	private static void CopyOnWriteArrayList() {
-		// TODO Auto-generated method stub
 		
+		java.util.concurrent.CopyOnWriteArrayList<String> cp= new java.util.concurrent.CopyOnWriteArrayList<String>();
+		cp.add("Chiru");
+		cp.add("Rajini");
+		cp.add("Mamooty");
+		System.out.println("Copy on arraylist listng the values");
+		cp.forEach(e->{
+			System.out.println(e);
+			cp.add("Amitabh");
+		});
+		System.out.println("Copy on arraylist After Adding in list the values");
+		cp.forEach(e->{
+			System.out.println(e);
+		});
+		System.out.println("");
 	}
 	
 	private static void arrayDequeue() {
@@ -118,7 +131,7 @@ public class CollectionFunctions {
 		ad.push("Nishanth");
 		System.out.println("ArrayDequeu Listing the values...");
 		ad.forEach(val->System.out.println(val));
-		System.out.println();
+		System.out.println("");
 	}
 
 

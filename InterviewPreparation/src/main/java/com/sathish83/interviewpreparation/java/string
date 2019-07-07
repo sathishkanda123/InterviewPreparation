@@ -1,0 +1,68 @@
+The java.lang.String class implements Serializable, Comparable and CharSequence interfaces.
+
+The CharSequence interface is used to represent the sequence of characters
+
+
+
+Whenever a String Object is created, two objects will be created- one in the Heap Area and one in the String constant pool 
+and the String object(new) reference always points to heap area object and string literal always refers scp
+
+/
+
+How string is Immutable
+.......................
+
+String str = "knowledge";
+
+ // assigns a new reference to the 
+// same string "knowledge"
+String s = str;     
+
+
+ str = str.concat(" base");
+ 
+ When the above statement is executed, the VM takes the value of String str, i.e. "knowledge" and appends " base", giving us the value "knowledge base". Now, since Strings are immutable, the VM can’t assign this value to str, so it creates a new String object, gives it a value "knowledge base", and gives it a reference str.
+
+An important point to note here is that, while the String object is immutable, its reference variable is not. 
+
+Lost the value
+...............
+
+        String s1 = "java"; 
+        s1.concat(" rules"); 
+        
+The first line is pretty straightforward: create a new String "java" and refer s1 to it.
+Next, the VM creates another new String "java rules", but nothing refers to it. So, the second String is instantly lost. We can’t reach it.
+
+
+Almost every method, applied to a String object in order to modify it, creates new String object. So, where do these String objects go? Well, these exist in memory, and one of the key goals of any programming language is to make efficient use of memory.
+
+As applications grow, it’s very common for String literals to occupy large area of memory, which can even cause redundancy. 
+So, in order to make Java more efficient, the JVM sets aside a special area of memory called the “String constant pool“.
+
+In the String constant pool, a String object is likely to have one or many references.
+If several references point to same String without even knowing it, it would be bad if one of the references modified that String value. That’s why String objects are immutable.
+
+Well, now you could say, what if someone overrides the functionality of String class? 
+That’s the reason that the String class is marked final so that nobody can override the behavior of its methods.
+
+
+Difference between String literal and New String object in Java
+//////////////////////////////////////////////////////////////
+
+
+String literals will go into String Constant Pool.
+
+
+Java String intern()
+The java string intern() method returns the interned string. It returns the canonical representation of string.
+
+It can be used to return string from memory, if it is created by new keyword. It creates exact copy of heap string object in string constant pool.
+
+
+String Buffer
+.............
+Java StringBuffer class is used to create mutable (modifiable) string. The StringBuffer class in java is same as String class except it is mutable i.e. it can be changed.
+Java StringBuffer class is thread-safe i.e. multiple threads cannot access it simultaneously. So it is safe and will result in an order.
+
+

@@ -1,0 +1,11 @@
+ReentrantLock
+.............
+ReentrantLock is a concrete implementation of Lock interface provided in Java concurrency package from Java 1.5 onwards.
+As per Javadoc, ReentrantLock is mutual exclusive lock,
+similar to implicit locking provided by synchronized keyword in Java, with extended feature like fairness,
+which can be used to provide lock to longest waiting thread.
+Lock is acquired by lock() method and held by Thread until a call to unlock() method.
+Fairness  parameter is provided while creating instance of ReentrantLock in constructor. 
+ReentrantLock provides same visibility and ordering guarantee, 
+provided by implicitly locking, which means, unlock() happens before another thread get lock().
+
