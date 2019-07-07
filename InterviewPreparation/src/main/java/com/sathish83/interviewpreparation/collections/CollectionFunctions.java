@@ -156,6 +156,7 @@ public class CollectionFunctions {
 	   System.out.println("Linkedlist Listing the values...");
 	   linkedList.forEach(System.out::println);
 	   System.out.println();
+	   
 	}
 
 	private static void arrayList() {

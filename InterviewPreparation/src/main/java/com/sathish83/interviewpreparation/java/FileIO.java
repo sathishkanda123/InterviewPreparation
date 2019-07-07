@@ -76,11 +76,10 @@ public class FileIO {
      void bufferWriter() throws IOException {
     	 
     	 try(FileWriter fw= new FileWriter(outPutFile, true)){
-    	
     		 BufferedWriter bw = new BufferedWriter(fw);
     		 bw.write("BufferWriter example");
+    		 bw.newLine();
     		 bw.close();
-    		 
     	 }
     	 
      }

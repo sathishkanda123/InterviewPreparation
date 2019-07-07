@@ -77,7 +77,8 @@ public class Customer {
 Spring autowire ways
 ....................
 1)byName - For this type of autowiring,
-setter method is used for dependency injection. 
+         setter method is used for dependency injection.
+ 
 Also the variable name should be same in the class where we will inject the dependency and in the spring bean configuration file.
 2)byType - spring container looks for the class type
   constructor autowiring is the analogous to byType autowiring. 
@@ -92,12 +93,16 @@ Also the variable name should be same in the class where we will inject the depe
  Spring bean scopes
  ..................
  Singleton(default) --Single bean object instance per spring IoC container
+ 
  prototype - Opposite to singleton, it produces a new instance each and every time a bean is requested
              You should know that destruction bean lifecycle methods are not called prototype scoped beans, 
              only initialization callback methods are called. So as developer, 
              you are responsible for clean up prototype-scoped bean instances and any resource there hold.
+             
  request -- A single instance will be created and available during complete lifecycle of an HTTP request.
+ 
  session -- A single instance will be created and available during complete lifecycle of an HTTP Session.
+ 
  application -- A single instance will be created and available during complete lifecycle of ServletContext
              In application scope, container creates one instance per web application runtime. 
              It is almost similar to singleton scope, with only two differences i.e.
@@ -282,7 +287,9 @@ Annotations used in Spring
 1) @Primary -- In some cases, we need to register more than one bean of the same type.
 	          Spring throws NoUniqueBeanDefinitionException if we try to run the application.
               To access beans with the same type we usually use @Qualifier(“beanName”) annotation.
-              We apply it at the injection point along with @Autowired. In our case, we select the beans at the configuration phase so @Qualifier can’t be applied here. We can learn more about @Qualifier annotation by following the link.
+              We apply it at the injection point along with @Autowired. 
+              In our case, we select the beans at the configuration phase so @Qualifier can’t be applied here.
+              We can learn more about @Qualifier annotation by following the link.
               To resolve this issue Spring offers the @Primary annotation.(https://www.baeldung.com/spring-primary)
 
 2) Annotation │ Meaning                                             │

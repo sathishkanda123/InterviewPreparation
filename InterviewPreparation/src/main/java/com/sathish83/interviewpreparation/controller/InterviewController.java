@@ -4,12 +4,31 @@ import java.util.Map;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.sathish83.interviewpreparation.service.InterviewService;
 
 @Controller
 public class InterviewController implements InitializingBean , DisposableBean{ 
 
+	InterviewService interviewService;
+	
+	
+	
+	@Autowired
+	public InterviewController(InterviewService interviewService) {
+		this.interviewService = interviewService;
+	}
+	
+
+	@Autowired
+	public void setInterviewService() {
+		
+	}
+	
+	
 	@RequestMapping("/")
 	public String home(Map<String, Object> model) {
 		return "index";
@@ -97,9 +116,7 @@ public class InterviewController implements InitializingBean , DisposableBean{
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		
 		System.out.println("After Proeprties set");
-		
 	}
 
 
