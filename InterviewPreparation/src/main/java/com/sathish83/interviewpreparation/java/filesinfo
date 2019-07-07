@@ -58,6 +58,76 @@ But, for character-oriented data, it is preferred to use FileWriter than FileOut
 
 
 
+ByteArrayOutPutStream
+.....................
+
+Java ByteArrayOutputStream class is used to write common data into multiple files. 
+In this stream, the data is written into a byte array which can be written to multiple streams later.
+The ByteArrayOutputStream holds a copy of data and forwards it to multiple streams.
+The buffer of ByteArrayOutputStream automatically grows according to data.
+
+
+Java FilePermission
+..................
+Java.io.FilePermission class:
+
+public final class FilePermission extends Permission implements Serializable 
+
+FilePermission file1 = new FilePermission("D:\\IO Package\\-", "read");  
+PermissionCollection permission = file1.newPermissionCollection();  
+permission.add(file1);  
+
+
+
+
+Java Writer and Reader
+.......................
+
+Writer
+......
+
+It is an abstract class for writing to character streams. The methods that a subclass must implement are write(char[], int, int), flush(), and close()
+
+Reader
+.......
+
+Java Reader is an abstract class for reading character streams. The only methods that a subclass must implement are read(char[], int, int) and close(). Most subclasses, however, will override some of the methods to provide higher efficiency, additional functionality, or both.
+Some of the implementation class are BufferedReader, CharArrayReader, FilterReader, InputStreamReader, PipedReader, StringReader
+
+
+BufferedReader
+..............
+Java BufferedReader class is used to read the text from a character-based input stream.
+ It can be used to read data line by line by readLine() method. 
+It makes the performance fast. It inherits Reader class.
+
+
+DataOutputStream
+..................
+Java DataOutputStream class allows an application to write primitive Java data types to the output stream in a machine-independent way.
+FileOutputStream file = new FileOutputStream(D:\\testout.txt);  
+DataOutputStream data = new DataOutputStream(file);  
+data.writeInt(65);  
+
+DataInputStream
+.................
+Java DataInputStream class allows an application to read primitive data from the input stream in a machine-independent way.
+
+Java application generally uses the data output stream to write data that can later be read by a data input stream.
+InputStream input = new FileInputStream("D:\\testout.txt");  
+    DataInputStream inst = new DataInputStream(input);  
+    int count = input.available();  
+    byte[] ary = new byte[count];  
+    inst.read(ary); 
+
+
+
+
+
+
+
+
+
 
 
 
