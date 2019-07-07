@@ -4,6 +4,14 @@ Java application uses an output stream to write data to a destination
 OutputStream class is an abstract class. It is the superclass of all classes representing an output stream of bytes. 
 An output stream accepts output bytes and sends them to some sink.
 
+Methods
+........
+1) public void write(int)throws IOException	is used to write a byte to the current output stream.
+2) public void write(byte[])throws IOException	is used to write an array of byte to the current output stream.
+3) public void flush()throws IOException	flushes the current output stream.
+4) public void close()throws IOException	is used to close the current output stream.
+
+
 OutPutStream
 .............
 
@@ -17,9 +25,57 @@ OutPutStream
  5) ObjectOutPutStream   
 
 
-
 InputStream
 ...........
 Java application uses an input stream to read data from a source
 InputStream class is an abstract class. It is the superclass of all classes representing an input stream of bytes.
+
+Methods
+.......
+
+1) public abstract int read()throws IOException	reads the next byte of data from the input stream. It returns -1 at the end of the file.
+2) public int available()throws IOException	returns an estimate of the number of bytes that can be read from the current input stream.
+3) public void close()throws IOException	is used to close the current input stream.
+
+ 1) FileInputPutStream
+ 2) ByteArrayInputPutStream
+ 3) FilterInputPutStream
+    a) DataInputPutStream
+    b) BufferedInputPutStream
+    c) PrintStream
+ 4) PipedInputStream
+ 5) ObjectInputStream   
+ 
+ 
+ ....................................................................................................................
+ 
+ FileOutStream
+ .............
+
+If you have to write primitive values into a file, use FileOutputStream class. 
+You can write byte-oriented as well as character-oriented data through FileOutputStream class. 
+But, for character-oriented data, it is preferred to use FileWriter than FileOutputStream.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
 
