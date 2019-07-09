@@ -35,4 +35,398 @@ like primary key generation, concurrency management, and different performance o
      
 5. Caching
    .......   
+   Caching is another performance tuning feature that you get almost for free if you use JPA. I already explained how the 1st level cache is utilized for the write-behind optimization. But that’s neither the only cache nor the only way to benefit from it. JPA defines 2 different kinds of caches:
+   The first-level cache, which contains all entities used within a transaction.
+   The second-level cache, which stores the entities in a session independent way.
+   
+
+Getting start with Hibernate
+.............................
+Hibernate is a very popular implementation of the Java Persistence API (JPA) standard. 
+It acts as an additional layer on top of JDBC and enables you to implement a database-independent persistence layer. 
+Hibernate provides an object-relational mapping implementation that maps your database 
+records to Java objects and generates the required SQL statements to replicate all operations to the database.
+
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>5.2.12.Final(Latest Version)</version>
+</dependency>
+
+
+The easiest way to configure Hibernate is to add a persistence.xml file to the META-INF directory.
+.................................................................................................
+<persistence-unit name="my-persistence-unit">
+        <description>Hibernate Tips</description>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect" />
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/recipes" />
+            <property name="javax.persistence.jdbc.user" value="postgres" />
+            <property name="javax.persistence.jdbc.password" value="postgres" />
+
+
+I first define a persistence unit with the name my-persistence-unit.
+It defines a set of entities which represent the data contained in a data store and will be managed by an EntityManager.
+
+Entity Manager
+..............
+https://docs.oracle.com/javaee/7/api/javax/persistence/EntityManager.html
+An EntityManager instance is associated with a persistence context. 
+A persistence context is a set of entity instances in which for any persistent entity identity
+there is a unique entity instance. Within the persistence context, the entity instances and their lifecycle are managed.
+The EntityManager API is used to create and remove persistent entity instances, to find entities by their primary key, and to query over entities.
+The set of entities that can be managed by a given EntityManager instance is defined by a persistence unit. 
+A persistence unit defines the set of all classes that are related or grouped by the application, 
+and which must be colocated in their mapping to a single database.
+
+EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+EntityManager em = emf.createEntityManager();
+em.getTransaction().begin();
+
+You don’t need to start the transaction after you’ve created your EntityManager. But please be aware, 
+that Hibernate will start and commit a transaction for each database operation if there is no active transaction.
+
+there are two types of EntityManager – Container Managed and Application Managed.
+
+ Container Managed =-- the container is in charge of beginning, committing, or rolling back the transaction.
+ ..................
+  @PersistenceContext
+  EntityManager entityManager;
+
+Application Managed
+...................
+
+EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.baeldung.movie_catalog");
+
+public static EntityManager getEntityManager() {
+    return emf.createEntityManager();
+}
+
+
+
+
+
+
+
+
+
+
+
+Date and Calender column in Hibernate
+.....................................
+One of the disadvantages of java.util.Date and java.util.Calendar is, that they always model a date with time information. But that’s quite often not what you want to persist in your database. In a lot of cases, you just want to store the date without any time or a time without a date.
+
+The classes of Java 8’s Date and Time API fix this issue. JPA and Hibernate support them as basic types. If you have the choice, you should use this new API. It provides a lot of benefits, and the easier attribute mapping is just one of them.
+
+
+
+Persist a New Entity
+....................
+You can persist a new entity to a new database record by instantiating an entity object and calling the persist method on the EntityManager.
+
+Author a = new Author();
+a.setFirstName("Thorben");
+em.persist(a);
+
+Update an Existing Entity
+........................
+Updating an existing entity is even more comfortable. 
+You just need to get an entity from the database and change any of its attributes. 
+Before you execute the next query or when you commit the transaction, Hibernate will perform a dirty check on all managed entities to identify any changes. 
+It then generates and executes the required SQL UPDATE statements.
+
+Author a = em.find(Author.class, 1L);
+a.setFirstName("Thorben");
+
+Remove an Existing Entity
+.........................
+And you can remove an entity by calling the remove method on the EntityManager. Hibernate will then generate and execute the required SQL statement to remove the entity.
+
+Author a = em.find(Author.class, 1L);
+em.remove(a);
+
+What’s the difference between persist, save, merge and update? 
+.............................................................
+JPA and Hibernate provide different methods to persist new and to update existing entities.
+You can choose between JPA’s persist and merge and Hibernate’s save and update methods.
+
+
+Before that just know about the states of Hibernate
+....................................................
+
+
+   States of Entity
+   ................
+   If an entity is attached to the current persistence context, it has the lifecycle state managed. 
+   That means that it is mapped to a database record. Your persistence provider generates the required SQL INSERT
+   and UPDATE statements to propagate all changes.
+   A managed entity is also stored in the 1st level cache.
+
+   Persistent state
+   ..................
+   When you create a new entity, it’s in the transient state. 
+   It remains in this state until you attach it to the current persistence context.
+   
+   detached state
+   ............... 
+   Entities in the detached lifecycle state are no longer managed by the persistence context. 
+   That can be the case because you closed the persistence context 
+   or you explicitly detached the entity from the current context.  
+
+   Removed
+   ..........
+   These entities were previously in the state managed, before you scheduled them for removal.
+   
+   
+persist or save
+................   
+   
+   When you create a new entity object, it’s in the transient lifecycle state. It does not map any database record.
+   Author a = new Author();
+   a.setFirstName("Thorben");
+   a.setLastName("Janssen");
+   
+   You can either use JPA’s persist or Hibernate’s save method to make object as managed state
+   
+   Both methods seem to do the same, but there are a few differences.
+
+   a) Specification vs. Proprietary API
+ 
+     The most obvious difference is that the JPA specification defines the persist method.
+     You can use it with all JPA implementations. 
+     The save method, on the other hand, is Hibernate-specific. 
+     It is, therefore, not available in other JPA implementation   
+   
+   b) Return Types And Execution Of SQL Statements
+   
+      Another obvious difference between these 2 methods is their return type. 
+      JPA’s persist method returns void and Hibernate’s save method returns the primary key of the entity. 
+   
+   
+ Updating a detached entity
+ ..........................
+ When you close the current persistence context or explicitly remove an entity from it by calling the clear or
+ detach methods on the EntityManager interface, the entity becomes detached. That means that it is no longer 
+ stored in the 1st level cache and that Hibernate will not replicate any of the applied changes to the database.
+   
+ You can use Hibernate’s update or JPA’s merge method to associate a detached entity with a persistence context. 
+ 
+ Both methods seem to do the same, but there are a few differences.
+ 
+ Merge 
+ .....
+ 
+ JPA’s merge method copies the state of a detached entity to a managed instance of the same entity. 
+ Hibernate, therefore, executes an SQL SELECT statement to retrieve a managed entity from the database. 
+ If the persistence context already contained a managed instance of the entity, Hibernate uses the existing one instead. It then copies all attribute values to the managed entity and returns it to the caller.
+   
+ When Hibernate flushes the persistence context for the next time, its dirty checking mechanism checks all managed entities. 
+ If it detects that the merge operation changed any entity attribute value, it triggers the required SQL UPDATE statement.
+ 
+ There is one important detail you need to know when you use JPA’s merge method. 
+ Hibernate copies the attribute values of the detached entity to the managed entity. 
+ This overwrites any changes that you performed on this entity within the current Session.
+   
+ Update
+ ......
+ 
+ Hibernate’s update method doesn’t trigger an SQL SELECT statement.
+ It just attaches the entity to the current persistence context. 
+ In contrast to JPA’s merge method, you can’t lose any changes by calling the update method. 
+ If the persistence context already contains a managed instance of the entity you want to update, it throws an exception.
+ 
+ When Hibernate performs the next flush, it doesn’t perform any dirty checks. That’s not possible because Hibernate didn’t read the latest version of the entity from the database. 
+ It just executes an SQL UPDATE statement for the reattached entity.
+ 
+ The missing dirty check causes an unnecessary SQL UPDATE statement when the entity and the corresponding database record contain the same values. This might be a problem if your DBA registered an update trigger for the database table. 
+ In these situations, you can annotate your entity with @SelectBeforeUpdate.
+ 
+ That tells Hibernate to select the entity and perform a dirty check before it generates the SQL UPDATE statement
+ 
+ 
+ 
+ Updating a managed entity
+ ........................
+ 
+ 
+ JPA and Hibernate make it very easy to update a managed entity. If your entity is in the lifecycle state managed, e.g. because you fetched it with a JPQL query or the find method of the EntityManager, you just need to change the values of your entity attributes.
+ 
+ m.getTransaction().begin();
+ 
+a = em.find(Author.class, a.getId());
+a.setFirstName("Thorben");
+ 
+log.info("Before commit");      
+em.getTransaction().commit();
+em.close();
+ 
+ When Hibernate decides to flush the persistence context, 
+ the dirty checking mechanism will detect the change and perform the required SQL UPDATE statement.
+ 
+ 
+ 
+ save vs saveOrUpdate
+ ....................
+ 
+ public Serializable save(Object object) throws HibernateException
+ public Serializable save(String entityName,Object object) throws HibernateException
+
+ Save() method stores an object into the database. It will Persist the given transient instance, first assigning a generated identifier. It returns the id of the entity created.
+SaveOrUpdate() calls either save() or update() on the basis of identifier exists or not. e.g if identifier does not exist, save() will be called or else update() will be called.
+Probably you will get very few chances to actually call save() or saveOrUpdate() methods, as hibernate manages all changes done in persistent objects.
+
+
+@CreationTimestamp and @UpdateTimestamp
+.......................................
+
+Hibernate’s @CreationTimestamp and @UpdateTimestamp annotations make it easy to track the timestamp of the creation and last update of an entity. 
+ 
+ 
+ 
+DTO'S Vs Entity
+.................. 
+Your persistence context manages the entities.That is a great thing when you want to update an entity.
+You just need to call a setter method with the new value. 
+Hibernate will take care of the required SQL statements and write the changes to the database. 
+ 
+That’s comfortable to use, but you don’t get it for free. 
+Hibernate has to perform dirty checks on all managed entities to find out if it needs to store any changes in the database.
+That takes time and is completely unnecessary when you just want to send a few information to the client.
+
+You also need to keep in mind that Hibernate and any other JPA implementation, 
+stores all managed entities in the 1st level cache. That seems to be a great thing. 
+It prevents the execution of duplicate queries and is required for Hibernate’s write behind optimization. 
+But managing the 1st level cache takes time and can even become a problem 
+if you select hundreds or thousands of entities.
+
+Write Operations
+.................
+
+Entity projections are great for all write operations. Hibernate and any other JPA implementation manages 
+the state of your entities and creates the required SQL statements to persist your changes in the database. 
+That makes the implementation of most create, update and remove operations very easy and efficient.
+
+
+Read Operations
+...............
+But read-only operations should be handled differently. Hibernate doesn’t need to manage any states or perform dirty checks if you just want to read some data from the database.
+
+So, from a theoretical point of view, DTOs should be the better projection for reading your data. 
+
+
+JPA FETCH TYPES
+...............
+
+The FetchType defines when Hibernate gets the related entities from the database, and it is one of the crucial elements for a fast persistence tier
+
+The default depends on the cardinality of the relationship. 
+//////////////////////////////////////////////////////////
+
+All to-one relationships use FetchType.EAGER and all to-many relationships FetchType.LAZY.
+
+@OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+private Set<OrderItem> items = new HashSet<OrderItem>();
+
+
+Sorting vs Ordering
+....................
+
+When use sorting, Hibernate will load the associated Book entities from the database and 
+use a Java Comparator to sort them in memory. That is not a good approach for huge Sets of entities.
+
+
+Ordering uses an ORDER BY clause in the SQL statement to retrieve the entities in the defined order.
+Database handles these kinds of operations very efficiently. So this approach is a lot better for huge associations.
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+   
+   
    

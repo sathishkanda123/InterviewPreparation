@@ -1,7 +1,11 @@
 package com.sathish83.interviewpreparation.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.sathish83.interviewpreparation.annotations.TestAnnotation;
 
@@ -19,6 +23,12 @@ public class JobSeeker implements Serializable{
 	private Location localtion;
 	
 	private Company appliedCompany;
+	
+	@CreationTimestamp
+    private LocalDateTime createDateTime;
+ 
+    @UpdateTimestamp
+    private LocalDateTime updateDateTime;
 	
 	public JobSeeker(JobSeeker jobseeker) {
 		
