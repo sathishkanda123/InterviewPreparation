@@ -1,0 +1,125 @@
+ACID PROPERTIES
+...............
+
+Atomicity means either all successful or none.
+
+Consistency ensures bringing the database from one consistent state to another consistent state.
+
+Isolation ensures that transaction is isolated from other transaction.
+
+Durability means once a transaction has been committed, it will remain so, even in the event of errors, power loss etc.
+
+
+Spring Transaction 
+..................
+https://www.baeldung.com/transaction-configuration-with-jpa-and-spring
+https://dzone.com/articles/spring-transaction-management
+
+Spring supports two types of transaction management:
+
+Programmatic transaction management: This means that you have to manage the transaction with the help of programming.
+  That gives you extreme flexibility, but it is difficult to maintain.
+
+like - 
+
+A)
+	
+EntityManagerFactory factory = Persistence.createEntityManagerFactory("PERSISTENCE_UNIT_NAME");                                       EntityManager entityManager = entityManagerFactory.createEntityManager();                   
+Transaction transaction = entityManager.getTransaction()                  
+try                                       
+{  
+   transaction.begin();                   
+   someBusinessCode();                    
+   transaction.commit();  
+}                  
+catch(Exception ex)                   
+{                     
+   transaction.rollback();  
+   throw ex;                  
+}
+
+The Spring Framework provides two means of programmatic transaction management.
+//////////////////////////////////////////////////////////////////////////////
+a. Using the TransactionTemplate
+   private final TransactionTemplate transactionTemplate;
+   
+b. Using a PlatformTransactionManager implementation directly
+     private PlatformTransactionManager transactionManager;
+
+Declarative Transaction (Usually used almost in all scenarios of any web application)
+....................................................................................
+
+<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"/>
+<tx:annotation-driven transaction-manager="txManager"/>
+
+@EnableTransactionManagement
+
+
+
+
+
+	
+
+Declarative transaction management: This means you separate transaction management from the business code. 
+ You only use annotations or XML-based configuration to manage the transactions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import org.springframework.transaction.annotation.Transactional;
+
+ @Transactional
+    public void book(String... persons) {
+        for (String person : persons) {
+            logger.info("Booking " + person + " in a seat...");
+            jdbcTemplate.update("insert into BOOKINGS(FIRST_NAME) values (?)", person);
+        }
+    }
+    
+@Transactional, meaning that any failure causes the entire operation to roll back to its previous state, 
+and to re-throw the original exception. 
+This means that none of the people will be added to BOOKINGS if one person fails to be added.
+
+
+
+Ways to handle transactions in Microservices
+    Avoiding transactions across Microservices.
+    Two-Phase Commit Protocol.
+    XA Standard.
+    REST-AT Standard Draft. 
+    Eventual Consistency and Compensation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

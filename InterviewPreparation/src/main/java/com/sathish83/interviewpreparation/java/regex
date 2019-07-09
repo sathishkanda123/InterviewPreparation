@@ -1,0 +1,2 @@
+Regular Expressions or Regex (in short) is an API for defining String patterns that can be used for searching, manipulating and editing a text. It is widely used to define constraint on strings such as password. Regular Expressions are provided under java.util.regex package.
+

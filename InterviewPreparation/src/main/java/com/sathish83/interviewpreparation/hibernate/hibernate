@@ -1,0 +1,38 @@
+https://thoughts-on-java.org/tutorials/
+.......................................
+
+Why we use Hibernate or JPA
+..........................
+The Java Persistence API (JPA) is a Java application programming interface specification 
+that describes the management of relational data in applications using Java Platform
+
+1.Developer Productivity
+  ........................
+
+Developer productivity is probably the most often referenced advantage of JPA and any of its implementations. 
+The main reason for that is that you have to define the mapping between the database tables and your
+domain model only once to use it for all write and most of your read operations.
+On top of that, you get a lot of additional features that you otherwise would need to implement yourself, 
+like primary key generation, concurrency management, and different performance optimizations.
+
+2. Database Independent
+   ....................
+   if you’re using JPA. It provides a database independent abstraction on top of SQL. 
+   As long as you’re not using any native queries, you don’t have to worry about database portability. Your JPA implementation adapts the generated SQL statements in each API call or
+   JPQL query to the specific database dialect and handles the different database-specific data types.
+   
+3. Type and Parameter Handling
+   ...........................
+   Because JDBC and Java data types do not line up perfectly, 
+   you’d have to find the right combinations and make sure to provide them as query parameters.
+   The best way to avoid these issues and to be able to focus on the business logic is to use a framework or specification,
+   like JPA, that handles these things automatically.
+   
+4. Avoid Unnecessary Queries
+   ...........................
+   The basic idea is to delay all write operations as long as possible so that multiple update statements 
+   can be combined into one.Your JPA implementation, therefore, stores all entities that were used within one transaction in the first level cache.
+     
+5. Caching
+   .......   
+   
