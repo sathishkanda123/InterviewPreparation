@@ -1,0 +1,76 @@
+1 ) Single Ton Design Pattern
+..............................
+https://www.callicoder.com/java-singleton-design-pattern-example/
+
+Singleton design pattern is used when you want to have only one instance of a given class. 
+It is a creational design pattern wherein we deal with the creation of objects.
+
+How do you ensure that a class has only one instance? Well, there are several ways of doing this in Java. But all of them are based on the following basic ideas:
+
+1)Declare a private constructor to prevent others from instantiating the class.
+
+2)Create the instance of the class either during class loading in a static field/block,
+  or on-demand in a static method that first checks whether the instance exists or not and creates a new one only if it doesn’t exist.
+
+Multiple types of Single Ton
+...........................
+1) Eagerly Initialized Singleton
+   .............................
+   
+   This is the simplest approach wherein the instance of the class is created at the time of class loading
+   The disadvantage of this approach is that the instance is created irrespective of whether it is accessed or not. This is fine if the object is simple and does not hold any system resources. 
+   But can have performance implications if it allocates a large amount of system resources and remains unused.   
+
+2) Eagerly Initialized Static Block Singleton   
+   ...........................................
+   You can also create the one-off instance of the class in a static block. 
+   This works because the static block is executed only once at the time of class loading.
+   The advantage with static block initialization is that you can write your initialization logic
+   or handle exceptions in the static block.
+   
+3) LazyInitializedSigleTon
+   .......................
+   
+   Lazy initialization means delaying the initialization of something until the first time it is needed.
+   Notice the use of synchronized keyword in the getInstance() method.
+   This is needed to prevent race conditions in multi-threaded environments.     
+   
+4) Lazily Initialized Double-Checked Locking Singleton
+   ....................................................
+   
+   The synchronized keyword added to the getInstance() method prevents race conditions, but it also incurs some performance penalty.
+ 
+   Following is an optimized version of the lazily initialized singleton where - instead of making the entire method synchronized, 
+   we create a synchronized block and wrap only the instantiation part inside the synchronized block 
+   
+   
+2. Object Pool Design Pattern
+   ...........................
+   
+   Object pool pattern is a software creational design pattern which is used in situations where the cost of initializing a class instance is very high.
+   Basically, an Object pool is a container which contains some amount of objects. So, when an object is taken from the pool, it is not available in the pool until it is put back.
+   Objects in the pool have a lifecycle:
+   
+   Creation
+   Validation
+   Destroy.
+         
+   
+ 3. FlyWeight DesignPattern
+    .......................
+    
+    Flyweight pattern is one of the structural design patterns as this pattern provides ways to decrease object count thus improving application required objects structure. 
+    Flyweight pattern is used when we need to create a large number of similar objects (say 105).
+    One important feature of flyweight objects is that they are immutable. 
+    This means that they cannot be modified once they have been constructed.
+      
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  

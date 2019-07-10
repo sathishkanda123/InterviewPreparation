@@ -339,10 +339,519 @@ use a Java Comparator to sort them in memory. That is not a good approach for hu
 Ordering uses an ORDER BY clause in the SQL statement to retrieve the entities in the defined order.
 Database handles these kinds of operations very efficiently. So this approach is a lot better for huge associations.
 
+You can tell Hibernate to use natural sorting by annotating the association attribute with @SortNatural. 
+This approach uses the Comparable implementation of the related entities.
+
+
+Custom Comparator
+When you don’t want to use the Comparable implementation of your entities for your sorting, you can use the 
+@SortComparator annotation to provide a custom Comparator
+
+@ManyToMany(mappedBy = "authors")
+@SortComparator(SortById.class)
+private SortedSet<Book> books = new TreeSet<Book>();
+
+ublic class SortById implements Comparator<Book> {
+
+	Logger log = Logger.getLogger(SortById.class.getSimpleName());
+	
+	@Override
+	public int compare(Book o1, Book o2) {
+		log.info("SortById.compare");
+		return o1.getId().compareTo(o2.getId());
+	}
+
+}
+ 
+You can define the ORDER BY clause with JPA’s @OrderBy annotation. If you don’t provide any additional information, 
+Hibernate will order the associated entities by their primary key
+ 
+@ManyToMany(mappedBy = "authors")
+@OrderBy("title ASC")
+private List<Book> books = new ArrayList<Book>();
+ 
+ 
+Asscoiations in Hibernate
+.........................
+
+JPA and Hibernate support the same associations as you know from your relational database model. You can use:
+
+one-to-one associations,
+many-to-one associations and
+many-to-many associations.
+
+Class -  OrderItems and Order
+ 
+
+ Many-to-One Associations
+ .........................
+  
+   Unidirectional Relationship 
+   ..............................
+
+   An order consists of multiple items, but each item belongs to only one order.
+   @Entity
+   public class OrderItem {
+ 
+    @ManyToOne
+    private Order order;
+ 
+   }
+   
+    By default, Hibernate generates the name of the foreign key 
+    column based on the name of the relationship mapping attribute and the name of the primary key attribute
+ 
+     If you want to use a different column, you need to define the foreign key column name with a @JoinColumn annotation
+     
+    @ManyToOne
+    @JoinColumn(name = “fk_order”)
+    private Order order;
+
+   Order o = em.find(Order.class, 1L);
+   OrderItem i = new OrderItem();
+   i.setOrder(o); // seting order in prder item
+   em.persist(i);
+
+ 
+ One To Many Association
+ ........................
+ 
+ UniDirectional
+ ...............
+ 
+ The unidirectional one-to-many relationship mapping is not very common. In the example of this post, it only models the association on the Order entity and not on the OrderItem.
+ 
+ @Entity
+ public class Order {
+ 
+    @OneToMany
+    private List<OrderItem> items = new ArrayList<OrderItem>();
+ 
+ }
+ 
+ Order o = em.find(Order.class, 1L);
+ OrderItem i = new OrderItem();
+ o.getItems().add(i);
+ em.persist(i);
+ 
+ 
+Bidirectional Many-to-One Associations
+.......................................
+
+The mapping definition consists of 2 parts:
+
+the to-many side of the association which owns the relationship mapping and
+the to-one side which just references the mapping
+ 
+ 
+        OrderItem                                               Order
+        ...........                                             .....
+
+    @ManyToOne                                           @OneToMany(mappedBy = “order”)
+    @JoinColumn(name = “fk_order”)                       private List<OrderItem> items = new ArrayList<OrderItem>();
+    private Order order;
+ 
+
+   You just need to reference the owning association mapping. You can do that by providing the name of the 
+   association-mapping attribute to the mappedBy attribute of the @OneToMany annotation. 
+
+
+
+ Many To Many Associations
+ .........................
+
+Many-to-Many relationships are another often used association type. On the database level, 
+it requires an additional association table which contains the primary key pairs of the associated entities.
+But as you will see, you don’t need to map this table to an entity.
+
+A typical example for such a many-to-many association are Products and Stores. 
+Each Store sells multiple Products and each Product gets sold in multiple Stores.
+
+When you map a many-to-many association, you should use a 
+Set instead of a List as the attribute type. Otherwise, 
+Hibernate will take a very inefficient approach to remove entities from the association. 
+It will remove all records from the association table and re-insert the remaining ones. 
+You can avoid that by using a Set instead of a List as the attribute type.
+
+  Unidirectional
+  ..............
+  
+   @Entity
+   public class Store {
+ 
+    @ManyToMany
+    private Set<Product> products = new HashSet<Product>();
+ 
+  }  
+
+  You can customize the column names of new table with a @JoinTable annotation and its attributes joinColumns and inverseJoinColumns. 
+  The joinColumns attribute defines the foreign key columns for the entity on which you define the association mapping. 
+  The inverseJoinColumns attribute specifies the foreign key columns of the associated entity.
+
+    @ManyToMany
+    @JoinTable(name = “store_product”,
+           joinColumns = { @JoinColumn(name = “fk_store”) },
+           inverseJoinColumns = { @JoinColumn(name = “fk_product”) })
+    private Set<Product> products = new HashSet<Product>();
+
+  Store s = em.find(Store.class, 1L);
+  Product p = new Product();
+  s.getProducts().add(p);
+  em.persist(p)
+
+
+ 
+ Bidirectional
+ .............
+ 
+          Store Table
+          ...........
+          
+           @ManyToMany
+           @JoinTable(name = “store_product”,
+           joinColumns = { @JoinColumn(name = “fk_store”) },
+           inverseJoinColumns = { @JoinColumn(name = “fk_product”) })
+           private Set<Product> products = new HashSet<Product>();
+ 
+ 
+          Product Table
+          .............
+          @ManyToMany(mappedBy=”products”)
+          private Set<Store> stores = new HashSet<Store>();
+ 
+ 
+  One to One Relationship
+  .......................
+  An example for a one-to-one association could be a Customer and the ShippingAddress. 
+  Each Customer has exactly one ShippingAddress and each ShippingAddress belongs to one Customer. 
+  
+  
+  Unidirectional
+  ..............
+  
+  @Entity
+  public class Customer{
+ 
+    @OneToOne
+    @JoinColumn(name = “fk_shippingaddress”)
+    private ShippingAddress shippingAddress;
+ 
+  }  
+ 
+   Bidirectional
+   .............
+   
+     Cutomer                                                      Shipping address
+     .......                                           ..............................
+    @OneToOne                                         @OneToOne(mappedBy = “shippingAddress”)
+    @JoinColumn(name = “fk_shippingaddress”)          private Customer customer;
+    private ShippingAddress shippingAddress;
+
+Cascade
+.......
+
+Cascade attribute is mandatory, when ever we apply relationship between objects, 
+cascade attribute transfers operations done on one object onto its related child objects
+
+Cascade having the values ->none,save,update,save-update,delete,all,all-delete-orphan
+
+1) default value of cascade =”none” means no operations will be transfers to the child class
+2) if we write cascade = “all” then all operations like insert, delete, update at parent object will be effected to child object also
+3) all-delete-orphan means, breaking relation between objects not deleting the objects from the database,
+4) 
+
+   
+
+
+Load vs Get in session
+......................
+
+load
+....
+
+It will always return a “proxy” (Hibernate term) without hitting the database. 
+In Hibernate, proxy is an object with the given identifier value, 
+its properties are not initialized yet, it just look like a temporary fake object.
+If no row found , it will throws an ObjectNotFoundException.
+
+Stock stock = (Stock)session.load(Stock.class, new Integer(100)); //proxy
+
+ //initialize proxy, no row for id 100, throw ObjectNotFoundException
+System.out.println(stock.getStockCode());
+
+get
+...
+It always hit the database and return the real object, an object that represent the database row, not proxy.
+If no row found , it return null.
+ex:- Stock stock = (Stock)session.get(Stock.class, new Integer(2));
 
 
 
 
+
+
+Hibernate Caching
+.................
+
+The first level cache type is the session cache. The session cache caches object within the current session but this is not enough for long level i.e. session factory scope.
+
+
+Enabling and Disabling the second level cache
+............................................
+SessionFactory 
+
+Enabling
+........
+<property name="cache.use_second_level_cache">true</property>
+   <property name="cache.provider_class">org.hibernate.cache.EhCacheProvider</property> 
+
+<!-- Disable the second-level cache -->  
+<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property> 
+
+
+
+
+Queries
+.......
+
+Queries are represented in JPA 2 by two interfaces - 
+the old Query interface, which was the only interface available for representing queries in JPA 1, and the new TypedQuery interface that was introduced in JPA 2. 
+The TypedQuery interface extends the Query interface.
+
+
+Query q1 = em.createQuery("SELECT c FROM Country c");
+
+  TypedQuery<Country> q2 =
+      em.createQuery("SELECT c FROM Country c", Country.class);
+   
+ When building a TypedQuery instance the expected result type has to be passed as an additional argument, as demonstrated for q2. Because, in this case, the result type is known (the query returns only Country objects), a TypedQuery is preferred.
+ 
+ 
+Named Queries
+.............
+
+TypedQuery<Country> query = em.createQuery(
+        "SELECT c FROM Country c WHERE c.name = :name", Country.class);
+ query.setParameter("name", name).getSingleResult();
+ 
+ 
+Ordinal Parameters
+.................. 
+
+TypedQuery<Country> query = em.createQuery(
+        "SELECT c FROM Country c WHERE c.name = ?1", Country.class);
+query.setParameter(1, name).getSingleResult();    
+
+Parameters
+..........
+
+public Country getCountryByName(EntityManager em, String name) {
+    TypedQuery<Country> query = em.createQuery(
+        "SELECT c FROM Country c WHERE c.name = '" + name + "'",
+        Country.class);
+    return query.getSingleResult();
+} 
+  
+      
+Criterial API
+.............
+
+A major advantage of using the criteria API is that errors can be detected earlier, 
+during compilation rather than at runtime. On the other hand, 
+for many developers string based JPQL queries, which are very similar to SQL queries, are easier to use and understand.
+
+For simple static queries - string based JPQL queries (e.g. as named queries) may be preferred. 
+For dynamic queries that are built at runtime - the criteria API may be preferred.
+
+
+
+Let’s look at a simple criteria query which will retrieve all the rows of “ITEM” from the database:
+
+CriteriaBuilder cb = session.getCriteriaBuilder();
+CriteriaQuery<Item> cr = cb.createQuery(Item.class);
+Root<Item> root = cr.from(Item.class);
+cr.select(root);
+ 
+Query<Item> query = session.createQuery(cr);
+List<Item> results = query.getResultList();    
+
+ 
+The CriteriaBuilder can be used to restrict query results based on specific conditions
+
+To get items having a price more than 1000:
+
+cr.select(root).where(cb.gt(root.get("itemPrice"), 1000)); 
+      
+items having itemNames contain Chair:
+ 
+cr.select(root).where(cb.like(root.get("itemName"), "%chair%"));
+ 
+Now inevitably the question comes, whether we can combine two or more of the above comparisons or not. 
+The answer is, of course, yes – the Criteria API allows us to easily chain expressions 
+ 
+Predicate[] predicates = new Predicate[2];
+predicates[0] = cb.isNull(root.get("itemDescription"));
+predicates[1] = cb.like(root.get("itemName"), "chair%");
+cr.select(root).where(predicates);
+
+
+Projections
+...........
+
+Typically, a JPQL query has a candidate entity class. The query, on execution, creates objects of the candidate class — populating all their properties using the data retrieved.
+
+But, it’s possible to retrieve a subset of the properties of the entity, or, that is, a projection of column data.
+
+Apart from column data, we can also project the results of grouping functions.
+
+Single-Column Projections
+........................
+
+Query query = entityManager.createQuery("select name from Product");
+List<Object> resultList = query.getResultList();
+Or, we can do the same with CriteriaBuilder:
+
+CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+CriteriaQuery<String> query = builder.createQuery(String.class);
+Root<Product> product = query.from(Product.class);
+
+//single column
+query.select(product.get("name"));
+
+//multicolumn
+query.multiselect(product.get("id"), product.get("name"), product.get("unitPrice"));
+
+List<String> resultList = entityManager.createQuery(query).getResultList();
+
+
+or
+Criteria crit = session.createCriteria(Products.class);
+
+Projection p1 = Projection.property("proName");
+Projection p2 = Projection.property("price");
+
+crit.setProjection(p1):
+crit.setProjection(p2):
+List l=crit.list();
+
+
+CriteriaUpdate
+..............
+Starting from JPA 2.1, there’s support for performing database updates using the Criteria API.
+CriteriaUpdate has a set() method that can used to provide new values for database records
+CriteriaUpdate<Item> criteriaUpdate = cb.createCriteriaUpdate(Item.class);
+Root<Item> root = criteriaUpdate.from(Item.class);
+criteriaUpdate.set("itemPrice", newPrice);
+criteriaUpdate.where(cb.equal(root.get("itemPrice"), oldPrice));
+ 
+Transaction transaction = session.beginTransaction();
+session.createQuery(criteriaUpdate).executeUpdate();
+transaction.commit();
+
+CriteriaDelete
+...............
+CriteriaDelete<Item> criteriaDelete = cb.createCriteriaDelete(Item.class);
+Root<Item> root = criteriaDelete.from(Item.class);
+criteriaDelete.where(cb.greaterThan(root.get("itemPrice"), targetPrice));
+ 
+Transaction transaction = session.beginTransaction();
+session.createQuery(criteriaDelete).executeUpdate();
+transaction.commit();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  
