@@ -105,14 +105,79 @@ Ways to handle transactions in Microservices
     Eventual Consistency and Compensation.
 
 
+https://cloud.spring.io/spring-cloud-static/Finchley.RELEASE/single/spring-cloud.html
+Spring Cloud
+.............
+Spring Cloud is a framework for building robust cloud applications. 
+The framework facilitates the development of applications 
+by providing solutions to many of the common problems faced when moving to a distributed environment.
+The decomposed nature of the application allows developers to focus on one problem at a time. 
+Improvements can be introduced without impacting other parts of a system.
+
+
+Spring Cloud Config
+...................
+https://www.baeldung.com/spring-cloud-configuration
+
+https://www.javacodegeeks.com/2017/08/spring-cloud-tutorials-introduction-spring-cloud-config-server.html
+
+When developing a cloud application, one issue is maintaining and distributing 
+configuration to our services. We really don’t want to spend time configuring each environment 
+before scaling our service horizontally or risk security breaches by baking our configuration into our application.
+
+To solve this, we will consolidate all of our configuration into a single 
+Git repository and connect that to one application that manages a configuration 
+for all our applications. We are going to be setting up a very simple implementation.
 
 
 
 
 
 
+ Microservices Design Pattern
+ ..........................
+ 
+ ApiGateway
+ .........
+   
+   An API Gateway is a server that is the single entry point into the system. 
+   It is similar to the Facade pattern from object-oriented design.
+   The API Gateway encapsulates the internal system architecture and provides an API that is tailored to each client. It might have other responsibilities such as authentication, 
+   monitoring, load balancing, caching, request shaping and management, and static response handling.
+   
+   The API Gateway is responsible for request routing, composition, and protocol translation. 
+   All requests from clients first go through the API Gateway. It then routes requests to the appropriate microservice. 
+   The API Gateway will often handle a request by invoking multiple microservices and aggregating the results.
+   It can translate between web protocols such as HTTP and WebSockets and web unfriendly protocols that are used internally.
+   
+   Implementing the API Gateway pattern is really simple with Spring Cloud and Zuul. 
+   Zuul comes from the Netflix family of microservice products for which 
+   Spring Cloud provides many enhancements for developers using Spring. 
+   Unlike many enterprise API gateway products, Zuul provides complete control for the 
+   developers to configure or program based on specific requirements.
+
+  The Zuul proxy internally uses the Eureka server for service discovery, 
+  and Ribbon for load balancing between service instances. 
+  The Zuul proxy is also capable of routing, monitoring, managing resiliency, security, and so on. 
+  In simple terms, you can consider Zuul a reverse proxy. 
+  However, as demonstrated in the referenced example, you can also build a sophisticated edge service that can 
+  modify the results of the proxied services by overriding them at the API layer.
+
+  Zuul gives us a lot of insight, flexibility, and resiliency, in part by making use of other Netflix OSS components:
+
+  Hystrix is used to wrap calls to our origins, which allows us to shed and prioritize traffic when issues occur
+
+  Ribbon is our client for all outbound requests from Zuul, which provides detailed information into network performance and errors, as well as handles software load balancing for even load distribution
+
+  Turbine aggregates fine­grained metrics in real­time so that we can quickly observe and react to problems
+
+  Archaius handles configuration and gives the ability to dynamically change properties
 
 
+spring cloud sleth
+zookeeper
+eureka
+hystrix
 
 
 

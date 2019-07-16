@@ -1,4 +1,4 @@
-package com.sathish83.interviewpreparation.designpatterns;
+package com.sathish83.interviewpreparation.designpatterns.creational;
 
 /*
  * This is the simplest approach wherein the instance of the class is created at the time of class loading -

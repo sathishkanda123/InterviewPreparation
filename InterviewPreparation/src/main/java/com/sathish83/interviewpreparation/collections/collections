@@ -9,7 +9,8 @@ Maintaining insertion order
 Non-synchronized
 RandomAccessed
 Better to for storing and accessing data
-Manipulation is slow , since its internally uses array, if any element removed from an array , all the bits are shifted in memory
+Manipulation is slow , since its internally uses array,
+if any element removed from an array , all the bits are shifted in memory
 
 InternalImplementationOfArrayList
 ...................................

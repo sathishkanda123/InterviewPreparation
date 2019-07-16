@@ -1,0 +1,23 @@
+The Java Generics programming is introduced in J2SE 5 to deal with type-safe objects. It makes the code stable by detecting the bugs at compile time.
+
+There are mainly 3 advantages of generics. They are as follows:
+..................................................................
+
+1) Type-safety: We can hold only a single type of objects in generics. It doesn?t allow to store other objects.
+2) Type casting is not required: There is no need to typecast the object.
+3) Compile-Time Checking: It is checked at compile time so problem will not occur at runtime. The good programming strategy says it is far better to handle the problem at compile time than runtime.
+
+The type parameters naming conventions are important to learn generics thoroughly.
+The common type parameters are as follows:
+
+T - Type
+E - Element
+K - Key
+N - Number
+V - Value
+
+Wildcard in Java Generics
+The ? (question mark) symbol represents the wildcard element. It means any type. If we write <? extends Number>, it means any child class of Number, e.g., Integer, Float, and double. Now we can call the method of Number class through any child class object.
+
+We can use a wildcard as a type of a parameter, field, return type, or local variable. However, it is not allowed to use a wildcard as a type argument for a generic method invocation, a generic class instance creation, or a supertype
+

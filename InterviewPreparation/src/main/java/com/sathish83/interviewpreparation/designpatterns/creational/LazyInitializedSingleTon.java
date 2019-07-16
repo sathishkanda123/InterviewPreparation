@@ -1,4 +1,4 @@
-package com.sathish83.interviewpreparation.designpatterns;
+package com.sathish83.interviewpreparation.designpatterns.creational;
 
 
 public class LazyInitializedSingleTon {

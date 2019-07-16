@@ -1,0 +1,31 @@
+https://junit.org/junit5/
+...........................
+
+JUnit is a unit testing framework for the Java programming language.
+JUnit has been important in the development of test-driven development, 
+and is one of a family of unit testing frameworks. 
+Its main use is to write repeatable tests for your application code units
+
+JUnit test suites help to grouping and executing tests in bulk. 
+Executing tests separately for all test classes is not desired in most cases. 
+Test suites help in achieving this grouping.
+
+In JUnit, test suites can be created and executed with these annotations.
+
+@RunWith
+@SuiteClasses
+
+Using JUnit 5 test suites, you can run tests spread into multiple test classes and different packages. 
+JUnit 5 provides two annotations: @SelectPackages and @SelectClasses to create test suites. 
+
+@RunWith(JUnitPlatform.class)
+@SelectPackages({"com.howtodoinjava.junit5.examples.packageA","com.howtodoinjava.junit5.examples.packageB"})
+public class JUnit5TestSuiteExample
+{
+}
+
+@RunWith(JUnitPlatform.class)
+@SelectClasses( { ClassATest.class, ClassBTest.class, ClassCTest.class } )
+public class JUnit5TestSuiteExample
+{
+}

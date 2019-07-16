@@ -1,8 +1,8 @@
-package com.sathish83.interviewpreparation.designpatterns;
+package com.sathish83.interviewpreparation.designpatterns.creational;
 
 public class LazyInitDoubleCheckLockingST {
 
-	private static volatile LazyInitDoubleCheckLockingST lazyDCST;
+	private static LazyInitDoubleCheckLockingST lazyDCST;
 	
 	public static LazyInitDoubleCheckLockingST getInstance() {
 		

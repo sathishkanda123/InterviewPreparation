@@ -1,0 +1,25 @@
+During unit testing of the application, sometimes it is not possible to replicate exact production environment.
+Sometimes database is not available and sometimes network access is not allowed. There can be many more such restrictions. 
+To deal with such limitations, we have to create mock for these unavailable resources.
+
+
+In mockito, we generally work with following kind of test doubles.
+
+Stubs – is an object that has predefined return values to method executions made during the test.
+Spies – are objects that are similar to stubs, but they additionally record how they were executed.
+Mocks – are objects that have return values to method executions made during the test and has recorded
+        expectations of these executions. Mocks can throw an exception if they receive a
+        call they don’t expect and are checked during verification 
+        to ensure they got all the calls they were expecting.
+        
+Partial Mocking
+..............
+
+Another approach for partial mocking is to use a spy. As I mentioned earlier,
+all method calls on a spy are real calls to the underlying method, unless stubbed. 
+So, you can also use a Mockito spy to partially mock few stubbed methods.     
+
+@Spy
+private ProductServiceImpl prodServiceSpy;     
+        
+        

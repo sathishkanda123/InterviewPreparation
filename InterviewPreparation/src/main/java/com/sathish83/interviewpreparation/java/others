@@ -7,3 +7,164 @@ what is System.out.println
   println – is a method of PrintStream class. println prints the argument passed to the standard console and a newline. 
   
   
+Solid Principles in Java
+........................
+
+1. Single Responsibility Principle --  One class should have one and only one responsibility
+
+2. Open Closed Principle -- Software components should be open for extension, but closed for modification
+
+3. Liskov’s Substitution Principle - Derived types must be completely substitutable for their base types
+
+4. Interface Segregation Principle - Clients should not be forced to implement unnecessary methods which they will not use
+
+5. Dependency Inversion Principle - Depend on abstractions, not on concretions
+
+
+Rest Principles Architecture https://restfulapi.net/
+............................
+
+REST is acronym for REpresentational State Transfer. It is architectural style for 
+distributed hypermedia systems and was first presented by Roy Fielding in 2000 in his famous dissertation.
+
+Guiding Principles of Rest
+..........................
+
+1) client-server - By separating the user interface concerns from the data storage concerns, 
+                    we improve the portability of the user interface
+                    across multiple platforms and improve scalability by simplifying the server components. 
+
+2) Stateless -  Each request from client to server must contain all of the information necessary to 
+                understand the request, and cannot take advantage 
+                of any stored context on the server. Session state is therefore kept entirely on the client.  
+
+3) Cacheable - Cache constraints require that the data within a response to a request be implicitly or 
+               explicitly labeled as cacheable or non-cacheable. If a response is cacheable, 
+               then a client cache is given the right to reuse that response data for later, equivalent requests.
+
+4) Uniform interface -  REST is defined by four interface constraints:
+                        identification of resources; manipulation of resources 
+                        through representations; 
+                        self-descriptive messages; and, hypermedia as the engine of application state.
+
+5) Layered system - The layered system style allows an architecture to be composed of hierarchical layers by 
+                    constraining component behavior 
+                    such that each component cannot “see” beyond the immediate layer with which they are interacting.
+
+
+6) Code on demand (optional)  - REST allows client functionality to be extended by downloading and executing code
+                                in the form of applets or scripts. 
+                                This simplifies clients by reducing the number of features required to be pre-implemented.
+
+
+
+HATEOAS Driven REST APIs
+........................
+HATEOAS (Hypermedia as the Engine of Application State) is a constraint of the REST application architecture that keeps the 
+RESTful style architecture unique from most other network application architectures. 
+The term “hypermedia” refers to any content that contains links to other forms of media such as images, movies, and text.
+
+An idempotent HTTP method is an HTTP method that can be called many times
+without different outcomes. It would not matter if the method is called only once, 
+or ten times over. The result should be the same. It essentially means that the result
+of a successfully performed request is independent of the number of times it is executed. 
+For example, in arithmetic, adding zero to a number is idempotent operation.
+
+POST is NOT idempotent.
+GET, PUT, DELETE, HEAD, OPTIONS and TRACE are idempotent.
+
+
+HTTP POST
+.........
+Generally – not necessarily – 
+POST APIs are used to create a new resource on server. 
+So when you invoke the same POST request N times, 
+you will have N new resources on the server. So, POST is not idempotent.
+
+HTTP PUT
+........
+
+Generally – not necessarily – PUT APIs are used to update the resource state. 
+If you invoke a PUT API N times, the very first request will update the resource; then rest N-1 requests will 
+just overwrite the same resource state again and again – effectively not changing anything. Hence, PUT is idempotent.
+
+REST API – N+1 Problem
+.......................
+
+the system needs to load N children of a parent entity where only parent entity was requested for.
+By default, ORMs are configured with lazy-loading enabled, 
+so 1 query issued for the parent entity causes N more queries i.e. one each for N child entities.
+
+In case of web APIs, N+1 problem is a situation where client applications are required to call the
+server N+1 times to fetch 1 collection resource + N client resources, mostly because 
+of collection resource not had enough information about child resources to build its user interface completely.
+
+Response codes
+..............
+
+200 - Ok - Successful
+201 - Created 
+400- BadRequest 
+401 - Unauthorized
+404 - ResourceNotFound
+405 - Method not allowed
+408- Request Timeout
+415 - UnsupportedMediaType
+500 - InernalServererror
+503 - Service unavailable
+
+
+Timer in Java
+.............
+Timer and TimerTask are java util classes used to schedule tasks in a background thread. 
+In a few words – TimerTask is the task to perform and Timer is the scheduler.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  

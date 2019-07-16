@@ -1,0 +1,148 @@
+JavaScript Hoisting
+...................
+https://www.w3schools.com/js/js_hoisting.asp
+
+JavaScript Declarations are Hoisted
+
+In JavaScript, a variable can be declared after it has been used.
+
+In other words; a variable can be used before it has been declared.
+
+Regular Expression
+..................
+
+syntax :- /pattern/modifiers;
+
+In JavaScript, regular expressions are often used with the two string methods: search() and replace().
+
+The search() method uses an expression to search for a match, and returns the position of the match.
+
+The replace() method returns a modified string where the pattern is replaced
+
+var str = "Visit W3Schools";
+var n = str.search(/w3schools/i);
+
+var str = "Visit Microsoft!";
+var res = str.replace(/microsoft/i, "W3Schools");
+
+
+Modifiers
+........
+
+i	Perform case-insensitive matching	
+g	Perform a global match (find all matches rather than stopping after the first match)	
+m	Perform multiline matching
+
+Brackets are used to find a range of characters:
+...............................................
+[abc]	Find any of the characters between the brackets	
+[0-9]	Find any of the digits between the brackets	
+(x|y)	Find any of the alternatives separated with |
+
+Metacharacters
+..............
+
+\d	Find a digit	
+\s	Find a whitespace character	
+\b	Find a match at the beginning of a word like this: \bWORD, or at the end of a word like this: WORD\b
+
+Quantifiers
+..........
+
+n+	Matches any string that contains at least one n
+n*	Matches any string that contains zero or more occurrences of n
+n?	Matches any string that contains zero or one occurrences of n
+
+
+The test() method is a RegExp expression method.
+/////////
+var patt = /e/;
+patt.test("The best things in life are free!");
+Since there is an "e" in the string, the output of the code above will be:true
+
+
+The exec() method is a RegExp expression method.
+/////////
+It searches a string for a specified pattern, and returns the found text as an object.
+
+var obj = /e/.exec("The best things in life are free!");
+
+obj[0] = e;
+obj.index = 2;
+
+
+
+Anonymous function 
+..................
+
+A function that is declared without any named identifier is known as an anonymous function. 
+In general, an anonymous function is inaccessible after its declaration.
+
+var anon = function() {
+	alert('I am anonymous');
+};
+anon();
+
+
+What is the difference between .call() and .apply()?
+.....................................................
+The function .call() and .apply() are very similar in their usage except a little difference. .call() is used when the number of the function's arguments are known to the programmer, as they have to be mentioned as arguments in the call statement. On the other hand, .apply() is used when the number is not known. The function .apply() expects the argument to be an array.
+
+The basic difference between .call() and .apply() is in the way arguments are passed to the function. Their usage can be illustrated by the given example.
+
+var someObject = {
+myProperty : 'Foo',
+
+myMethod : function(prefix, postfix) {
+
+	alert(prefix + this.myProperty + postfix);
+}
+};
+someObject.myMethod('<', '>'); // alerts '<Foo>'
+var someOtherObject  = {
+
+	myProperty : 'Bar'
+
+};
+someObject.myMethod.call(someOtherObject, '<', '>'); // alerts '<Bar>'
+
+someObject.myMethod.apply(someOtherObject, ['<', '>']); // alerts '<Bar>'
+
+ Explain the role of deferred scripts in JavaScript?
+.....................................................
+
+By default, the parsing of the HTML code, during page loading,
+is paused until the script has not stopped executing. 
+It means, if the server is slow or the script is particularly heavy,
+then the webpage is displayed with a delay. 
+While using Deferred, scripts delays execution of the script till the 
+time HTML parser is running. 
+This reduces the loading time of web pages and they get displayed faster.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

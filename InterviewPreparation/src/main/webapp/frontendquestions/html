@@ -1,0 +1,288 @@
+1) What is Map tag
+  ................
+https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_areamap
+
+ The <map> tag is used to define a client-side image-map. An image-map is an image with clickable areas.
+
+ The required name attribute of the <map> element is associated with the <img>'s usemap attribute and creates a relationship between the image and the map.
+
+ The <map> element contains a number of <area> elements, that defines the clickable areas in the image map.
+
+<img src="planets.gif" width="145" height="126" alt="Planets" usemap="#planetmap">
+
+<map name="planetmap">
+  <area shape="rect" coords="0,0,82,126" alt="Sun" href="sun.htm">
+  <area shape="circle" coords="90,58,3" alt="Mercury" href="mercur.htm">
+  <area shape="circle" coords="124,58,8" alt="Venus" href="venus.htm">
+</map>
+
+based on the coords we will display the image , if user clicks
+
+
+How Browsers Understands
+........................
+
+https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/
+
+Browsers's High level Component
+................................
+
+1.The user interface: this includes the address bar, back/forward button, bookmarking menu, etc. Every part of the browser display except the window where you see the requested page.
+
+2.The browser engine: marshals actions between the UI and the rendering engine.
+
+3.The rendering engine : responsible for displaying requested content. For example if the requested content is HTML, 
+  the rendering engine parses HTML and CSS, and displays the parsed content on the screen.
+
+4.Networking: for network calls such as HTTP requests, using different implementations for different platform behind a platform-independent interface.
+
+5.UI backend: used for drawing basic widgets like combo boxes and windows. This backend exposes a generic interface that is not platform specific. Underneath it uses operating system user interface methods.
+
+6.JavaScript interpreter. Used to parse and execute JavaScript code.
+
+7.Data storage. This is a persistence layer. The browser may need to save all sorts of data locally, such as cookies. Browsers also support storage mechanisms such as localStorage, IndexedDB, WebSQL and FileSystem.
+
+
+Rendering engines
+.................
+
+Different browsers use different rendering engines: 
+       Internet Explorer uses Trident, 
+       Firefox uses Gecko, 
+       Safari uses WebKit. 
+       Chrome and Opera (from version 15) use Blink, a fork of WebKit.
+
+The main flow
+............
+The rendering engine will start getting the contents of the requested document from the networking layer. This will usually be done in 8kB chunks.
+
+The rendering engine will start parsing the HTML document and convert elements to DOM nodes in a 
+tree called the "content tree". The engine will parse the style data, both in external CSS files and in style elements. 
+Styling information together with visual instructions in the HTML will be used to create another tree: the render tree.
+
+
+
+Html Link Colors
+.................
+<a href="https://www.w3schools.com/html/">Visit our HTML tutorial</a>
+y default, a link will appear like this (in all browsers):
+
+An unvisited link is underlined and blue
+A visited link is underlined and purple
+An active link is underlined and red
+
+You can change the default colors, by using CSS:
+
+a:link {
+  color: green; 
+  background-color: transparent; 
+  text-decoration: none;
+}
+
+a:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+HTML Links - Create a Bookmark
+...............................
+<h2 id="C4">Chapter 4</h2>
+
+<a href="#C4">Jump to Chapter 4</a>
+
+add a link to the bookmark ("Jump to Chapter 4"), from another page:
+
+<a href="html_demo.html#C4">Jump to Chapter 4</a>
+
+
+Table tag
+.........
+<table>
+<tr>
+<th>Name</th>
+<th>Age</th>
+</tr>
+<tr>
+<td>sathish</td>
+<td>29</td>
+</tr>
+<tr>
+<td>Cook</td>
+<td>48</td>
+</tr>
+
+If you want the borders to collapse into one border, add the CSS border-collapse property:
+border-collapse: collapse;
+
+<tr>
+    <th rowspan="2">Telephone:</th>
+    <td>55577854</td>
+  </tr>
+  <tr>
+    <td>55577855</td>
+  </tr>
+  
+  
+  Block level elements in HTML:
+  ............................
+A block-level element always starts on a new line
+and takes up the full width available (stretches out to the left and right as far as it can).
+
+  Inline Elements   
+  ................
+An inline element does not start on a new line and only takes up as much width as necessary.  
+ 
+ 
+ When making responsive web pages, add the following <meta> element in all your web pages:
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+This will set the viewport of your page, which will give the browser instructions on how to control the page's dimensions and scaling.
+
+
+DocType
+.......
+
+The <!DOCTYPE> declaration must be the very first thing in your HTML document, before the <html> tag.
+
+The <!DOCTYPE> declaration is not an HTML tag; it is an instruction to the web browser about what version of HTML the page is written in.
+
+HTML 5
+........
+<!DOCTYPE html>
+
+
+CSS Border - properties allow you to specify the style, width, and color of an element's border.
+..........
+border-style property specifies what kind of border to display.
+The border-width property specifies the width of the four borders.
+
+
+<p class="dotted">A dotted border.</p>
+
+p.dotted {border-style: dotted;}
+
+
+Margin  - properties are used to create space around elements, outside of any defined borders.
+.......
+So, here is how it works:
+
+If the margin property has four values:
+
+margin: 25px 50px 75px 100px;
+
+top margin is 25px
+right margin is 50px
+bottom margin is 75px
+left margin is 100px
+
+Padding - padding properties are used to generate space around an element's content, inside of any defined borders
+........
+
+
+
+Display
+.......
+The display property specifies if/how an element is displayed.
+
+Every HTML element has a default display value depending on what type of element it is. The default display value for most elements is block or inline.
+
+display:block;
+dsplay:inline;
+display: none; 
+display: inline-block
+
+Compared to display: inline, the major difference is that display: inline-block allows to set a width and height on the element.
+
+Also, with display: inline-block, the top and bottom margins/paddings are respected, but with display: inline they are not.
+
+Compared to display: block, the major difference is that display: inline-block does not add a line-break after the element, so the element can sit next to other elements.
+
+ 
+ 
+
+
+The position Property
+.....................
+The position property specifies the type of positioning method used for an element.
+...................................................................................
+
+There are five different position values:
+.........................................
+static
+relative
+fixed
+absolute
+sticky
+
+
+
+
+Pseudo-classes?
+A pseudo-class is used to define a special state of an element.
+
+For example, it can be used to:
+
+Style an element when a user mouses over it
+Style visited and unvisited links differently
+Style an element when it gets focus
+
+selector:pseudo-class {
+  property:value;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

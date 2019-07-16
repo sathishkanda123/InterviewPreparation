@@ -10,6 +10,13 @@ public class StringQuestions {
 	
 		String s= "InterviewPreparation";
 		
+		//GE Question
+		//char var;
+		
+		//var = "hackathons".charAt(-1);
+		//System.out.println("var is "+var);
+		// Index out of bound exception
+		
 		System.out.println("Get the value from particualr Index--"+s.charAt(19));
 		
 		System.out.println("Get the length of the string--"+s.length());

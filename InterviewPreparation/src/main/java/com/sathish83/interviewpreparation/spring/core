@@ -138,7 +138,8 @@ June 30, 2012
 
  
 Previous Next
-In this article, you’ll be given an overview of Spring Bean Life cycle managed by the spring container, including understanding of Spring containers and IoC. You’ll also get an overview of the spring bean life cycle call back handlers and post processors. The Spring Framework provide several call back methods to created a bean and some method to be destroy the bean in the Spring IoC Container.
+In this article, you’ll be given an overview of Spring Bean Life cycle managed by the spring container,
+ including understanding of Spring containers and IoC. You’ll also get an overview of the spring bean life cycle call back handlers and post processors. The Spring Framework provide several call back methods to created a bean and some method to be destroy the bean in the Spring IoC Container.
 
 
  
@@ -161,6 +162,7 @@ Core Java
 Hibernate Tutorial
 Spring Batch
 Understanding Spring bean life cycle
+
 The Spring bean life cycle is easy to understand. When a bean is instantiated, it may be required to perform some initialization to get it into a usable state. Similarly, when the bean is no longer required and is removed from the container, some cleanup may be required.
 Though, there is lists of the activities that take place behind the scenes between the time of bean Instantiation and its destruction, but this chapter will discuss only two important bean life cycle callback methods which are required at the time of bean initialization and its destruction.
 Beans can be notified after creation and all properties are set, and before they are destroyed and removed from the bean container. This involves specifying the callback method to be invoked by the container. This is done in XML by specifying attributes init-method=”myinit”, for the initialization callback, and destroy-method=”mydestroy”, for the destroy callback. “myinit” and “cleanUp” are names of instance methods in the bean class.
@@ -301,6 +303,104 @@ Annotations used in Spring
 ......................................................................................
 
 3) @RestController = @Controller + @ResponseBody
+
+
+Excepction Handling in Spring
+............................
+
+Before Spring 3.2, the two main approaches to handling exceptions in a 
+Spring MVC application were: HandlerExceptionResolver or the @ExceptionHandler annotation
+	
+Since 3.2 we’ve had the @ControllerAdvice annotation to address the limitations of the previous two solutions and 
+to promote a unified exception handling throughout a whole application.
+
+Spring 5 introduces the ResponseStatusException class: A fast way for basic error handling in our REST APIs.
+
+
+Solution 1 – The Controller level @ExceptionHandler
+.................................................
+
+public class FooController{
+     
+    //...
+    @ExceptionHandler({ CustomException1.class, CustomException2.class })
+    public void handleException() {
+        //
+    }
+}
+This approach has a major drawback – the @ExceptionHandler annotated method is only active for that particular Controller
+
+
+Solution 2 – ResponseStatusExceptionResolver
+..........................................
+This resolver was also introduced in Spring 3.0 and is enabled by default in the DispatcherServlet. Its main responsibility is to use the
+@ResponseStatus annotation available on custom exceptions and to map these exceptions to HTTP status codes.
+
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class ResourceNotFoundException extends RuntimeException {
+    public ResourceNotFoundException() {
+        super();
+    }
+    public ResourceNotFoundException(String message, Throwable cause) {
+        super(message, cause);
+    }
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+    public ResourceNotFoundException(Throwable cause) {
+        super(cause);
+    }
+}
+
+Solution 3 – @ControllerAdvice
+.............................
+
+Spring 3.2 brings support for a global @ExceptionHandler with the @ControllerAdvice annotation.
+ This enables a mechanism that breaks away from the older MVC model 
+and makes use of ResponseEntity along with the type safety and flexibility of @ExceptionHandler:
+
+@ControllerAdvice
+public class RestResponseEntityExceptionHandler 
+  extends ResponseEntityExceptionHandler {
+ 
+    @ExceptionHandler(value 
+      = { IllegalArgumentException.class, IllegalStateException.class })
+    protected ResponseEntity<Object> handleConflict(
+      RuntimeException ex, WebRequest request) {
+        String bodyOfResponse = "This should be application specific";
+        return handleExceptionInternal(ex, bodyOfResponse, 
+          new HttpHeaders(), HttpStatus.CONFLICT, request);
+    }
+}
+
+Solution 4 – ResponseStatusException (Spring 5 and Above)
+.........................................................
+
+@GetMapping("/actor/{id}")
+public String getActorName(@PathVariable("id") int id) {
+    try {
+        return actorService.getActor(id);
+    } catch (ActorNotFoundException ex) {
+        throw new ResponseStatusException(
+          HttpStatus.NOT_FOUND, "Actor Not Found", ex);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
