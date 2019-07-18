@@ -115,6 +115,9 @@ The decomposed nature of the application allows developers to focus on one probl
 Improvements can be introduced without impacting other parts of a system.
 
 
+
+
+
 Spring Cloud Config
 ...................
 https://www.baeldung.com/spring-cloud-configuration
@@ -128,6 +131,30 @@ before scaling our service horizontally or risk security breaches by baking our 
 To solve this, we will consolidate all of our configuration into a single 
 Git repository and connect that to one application that manages a configuration 
 for all our applications. We are going to be setting up a very simple implementation.
+
+
+Euerka Services
+...............
+
+Client-side service discovery allows services to find and communicate with each other without hard-coding hostname and port. 
+The only ‘fixed point’ in such an architecture consists of a service registry with which each service has to register.
+
+A drawback is that all clients must implement a certain logic to interact with this fixed point. 
+This assumes an additional network round trip before the actual request.
+
+Eureka Server
+............
+
+Implementing a Eureka Server for service registry is as easy as:
+
+adding spring-cloud-starter-netflix-eureka-server to the dependencies
+enable the Eureka Server in a @SpringBootApplication by annotating it with @EnableEurekaServer
+configure some properties
+
+
+
+
+
 
 
 

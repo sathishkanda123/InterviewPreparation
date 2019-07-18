@@ -767,6 +767,11 @@ session.createQuery(criteriaDelete).executeUpdate();
 transaction.commit();
 
 
+Hibernate Auditing
+..................
+
+
+
 
 
 
