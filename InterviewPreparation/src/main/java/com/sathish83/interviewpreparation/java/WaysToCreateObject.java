@@ -39,6 +39,7 @@ public class WaysToCreateObject implements Cloneable{
 		WaysToCreateObject createWay1 = new WaysToCreateObject(); // constructor invoke
 		createWay1.byNewKeyword();
 	
+		
 		//By New Instance
 		WaysToCreateObject createWay2 = WaysToCreateObject.class.newInstance(); // constructor invoke
 		createWay2.byNewInstance();

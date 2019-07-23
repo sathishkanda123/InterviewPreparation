@@ -115,9 +115,14 @@ public static EntityManager getEntityManager() {
 
 Date and Calender column in Hibernate
 .....................................
-One of the disadvantages of java.util.Date and java.util.Calendar is, that they always model a date with time information. But that’s quite often not what you want to persist in your database. In a lot of cases, you just want to store the date without any time or a time without a date.
+One of the disadvantages of java.util.Date and java.util.Calendar is, 
+that they always model a date with time information. 
+But that’s quite often not what you want to persist in your database. 
+In a lot of cases, you just want to store the date without any time or a time without a date.
 
-The classes of Java 8’s Date and Time API fix this issue. JPA and Hibernate support them as basic types. If you have the choice, you should use this new API. It provides a lot of benefits, and the easier attribute mapping is just one of them.
+The classes of Java 8’s Date and Time API fix this issue. JPA and Hibernate support them as basic types.
+If you have the choice, you should use this new API. It provides a lot of benefits,
+  and the easier attribute mapping is just one of them.
 
 
 
@@ -167,6 +172,7 @@ Before that just know about the states of Hibernate
 
    Persistent state
    ..................
+   
    When you create a new entity, it’s in the transient state. 
    It remains in this state until you attach it to the current persistence context.
    
@@ -221,11 +227,13 @@ persist or save
  
  JPA’s merge method copies the state of a detached entity to a managed instance of the same entity. 
  Hibernate, therefore, executes an SQL SELECT statement to retrieve a managed entity from the database. 
- If the persistence context already contained a managed instance of the entity, Hibernate uses the existing one instead.
-  It then copies all attribute values to the managed entity and returns it to the caller.
+ If the persistence context already contained a managed instance of the entity,
+ Hibernate uses the existing one instead.
+ It then copies all attribute values to the managed entity and returns it to the caller.
    
  When Hibernate flushes the persistence context for the next time, its dirty checking mechanism checks all managed entities. 
- If it detects that the merge operation changed any entity attribute value, it triggers the required SQL UPDATE statement.
+ If it detects that the merge operation changed any entity attribute value, 
+ it triggers the required SQL UPDATE statement.
  
  There is one important detail you need to know when you use JPA’s merge method. 
  Hibernate copies the attribute values of the detached entity to the managed entity. 
@@ -243,7 +251,8 @@ persist or save
  It just executes an SQL UPDATE statement for the reattached entity.
  
  The missing dirty check causes an unnecessary SQL UPDATE 
- statement when the entity and the corresponding database record contain the same values. This might be a problem if your DBA registered an update trigger for the database table. 
+ statement when the entity and the corresponding database record contain the same values.
+ This might be a problem if your DBA registered an update trigger for the database table. 
  In these situations, you can annotate your entity with @SelectBeforeUpdate.
  
  That tells Hibernate to select the entity and perform a dirty check before it generates the SQL UPDATE statement
@@ -277,7 +286,8 @@ em.close();
  public Serializable save(String entityName,Object object) throws HibernateException
 
  Save() method stores an object into the database. 
- It will Persist the given transient instance, first assigning a generated identifier. It returns the id of the entity created.
+ It will Persist the given transient instance, first assigning a generated identifier. 
+ It returns the id of the entity created.
 SaveOrUpdate() calls either save() or update() on the basis of identifier exists or not.
  e.g if identifier does not exist, save() will be called or else update() will be called.
 Probably you will get very few chances to actually 

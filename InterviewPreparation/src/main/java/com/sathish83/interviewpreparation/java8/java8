@@ -38,6 +38,48 @@ Java Optional Class
 Java introduced a new class Optional in jdk8. It is a public final class and used to deal with NullPointerException in Java application. 
 
 
+Parallel Sort
+.............
+
+1) Arrays.sort() : is a sequential sorting.
+
+The API uses single thread for the operation.
+It takes bit longer time to perform the operation.
+2. Arrays.ParallelSort() : is a parallel sorting.
+
+The API uses multiple threads for the operation.
+It’s faster when there are a lot of elements whereas slower for lesser elements.
+
+
+Flat Map
+........
+map and flatMap in Streams
+..........................
+
+The map() method wraps the underlying sequence in a Stream instance, 
+whereas the flatMap() method allows avoiding nested Stream<Stream<R>> structure.
+
+List<List<String>> list = Arrays.asList(
+  Arrays.asList("a"),
+  Arrays.asList("b"));
+System.out.println(list)
+
+This snippet prints a list of lists [[a], [b]].
+
+System.out.println(list
+  .stream()
+  .flatMap(Collection::stream)
+  .collect(Collectors.toList()));
+
+The result of such a snippet will be flattened to [a, b].
+
+
+
+
+
+
+
+
 
 
 

@@ -42,6 +42,124 @@ Async/Await
 RxJS Observables
 
 
+Pipes
+.....
+A pipe takes in data as input and transforms it to a desired output. 
+
+Built-in pipes
+Angular comes with a stock of pipes such as DatePipe, UpperCasePipe, 
+LowerCasePipe, CurrencyPipe, and PercentPipe. They are all available for use in any template.
+
+Custom Pipes
+............
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({name: 'exponentialStrength'})
+export class ExponentialStrengthPipe implements PipeTransform {
+  transform(value: number, exponent?: number): number {
+    return Math.pow(value, isNaN(exponent) ? 1 : exponent);
+  }
+}
+
+<p>Super power boost: {{2 | exponentialStrength: 10}}</p>
+
+
+Directives
+..........
+
+An Attribute directive changes the appearance or behavior of a DOM element.
+
+import { Directive } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {
+   
+   constructor(el: ElementRef) {
+       el.nativeElement.style.backgroundColor = 'yellow';
+    }
+}
+
+<p appHighlight>Highlight me!</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What is BehaviorSubject, ReplaySubject and AsyncSubject.
+......................................................
+
+
+Behaviour Subject ->
+....................
+ Behaviour subject has the charctersitic that it stores the current value , this means you can always 
+directly get the last emited value from the behaviour subject
+
+
+import * as Rx from "rxjs";
+
+const subject = new Rx.BehaviorSubject();
+
+subject.next(Math.random());
+
+subject.subscribe((data) => {
+    console.log('Subscriber A:', data);
+});
+
+ReplaySubject ->
+................
+   The ReplaySubject is comparable to the BehaviorSubject in the way that it can send “old” 
+values to new subscribers. It however has the extra characteristic that it can record a part of the observable
+execution and therefore store multiple old values and “replay” them to new subscribers.
+
+
+const subject = new Rx.ReplaySubject(2); // 2 - how man values i have to store
+
+subject.subscribe((data) => {
+    console.log('Subscriber A:', data);
+});
+
+subject.next(Math.random())
+
+AsyncSubject
+............
+The AsyncSubject is aSubject variant where only the last value of the Observable execution is sent to its subscribers, and only when the execution completes
+
+
+const subject = new Rx.AsyncSubject();
+
+// subscriber 1
+subject.subscribe((data) => {
+    console.log('Subscriber A:', data);
+});
+
+subject.next(Math.random())
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+.................
+
 
                    
                    

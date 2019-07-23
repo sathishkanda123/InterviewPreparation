@@ -10,7 +10,8 @@ from misuse by the outside world, which is referred as ‘information hiding’ 
 Abstraction:
 
  is used to hiding something too but in a higher degree(class, interface). 
- Clients use an abstract class(or interface) do not care about who or which it was, they just need to know what it can do.
+ Clients use an abstract class(or interface) do not care about who or which it was, 
+ they just need to know what it can do.
  
 Abstraction, as a process, denotes the
 extracting of the essential details about an item, or a group of items,
@@ -49,8 +50,16 @@ the method in the derived class hides the method in the base class.
 
 Overriding at exception Handling
 ................................
-Rule#1 : If the super-class overridden method does not throws an exception, subclass overriding method can only throws the unchecked exception, throwing checked exception will lead to compile-time error.
-Rule#2 : If the super-class overridden method does throws an exception, subclass overriding method can only throw same, subclass exception. Throwing parent exception in Exception hierarchy will lead to compile time error.Also there is no issue if subclass overridden method is not throwing any exception.
+Rule#1 : If the super-class overridden method does not throws an exception, 
+         subclass overriding method can only throws the unchecked exception, 
+          throwing checked exception will lead to compile-time error.
+
+Rule#2 : If the super-class overridden method does throws an exception, 
+         subclass overriding method can only throw same, subclass exception. 
+         Throwing parent exception in Exception hierarchy will lead to compile time error.
+         Also there is no issue if subclass overridden method is not throwing any exception.
+
+
 
 
 Abstract
@@ -70,9 +79,58 @@ abstract strictfp
 Interfaces
 ..........
 It is used to achieve total abstraction.
-Since java does not support multiple inheritance in case of class, but by using interface it can achieve multiple inheritance .
+Since java does not support multiple inheritance in case of class, 
+but by using interface it can achieve multiple inheritance .
 It is also used to achieve loose coupling.
-Interfaces are used to implement abstraction. So the question arises why use interfaces when we have abstract classes?
-The reason is, abstract classes may contain non-final variables, whereas variables in interface are final, public and static.
+Interfaces are used to implement abstraction. 
+So the question arises why use interfaces when we have abstract classes?
+The reason is, abstract classes may contain non-final variables,
+whereas variables in interface are final, public and static.
+
+
+Final
+......
+If a class is declared as final then by default all of the methods present 
+in that class are automatically final but variables are not.
+
+
+Composition vs Inheritence
+........................
+
+Inheritence
+...........
+
+class Fruit {
+    //...
+}
+class Apple extends Fruit {
+    //...
+}
+
+
+Composition
+...........
+
+class Fruit {
+    //...
+}
+class Apple {
+    private Fruit fruit = new Fruit();
+    //...
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

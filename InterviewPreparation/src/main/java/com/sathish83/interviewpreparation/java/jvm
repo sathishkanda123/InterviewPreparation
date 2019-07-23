@@ -1,0 +1,47 @@
+https://www.journaldev.com/2856/java-jvm-memory-model-memory-management-in-java
+
+Java (JVM) Memory Model
+.......................
+
+Jvm heap memory is physically divided into two parts 
+a) Young generation
+b) Old Generation
+
+The young generation is the place where all the new objects are created. 
+When the young generation is filled, garbage collection is performed
+
+This garbage collection is called Minor GC. 
+Young Generation is divided into three parts – Eden Memory and two Survivor Memory spaces.
+
+eden
+....
+Most of the newly created objects are located in the Eden memory space.
+
+When Eden space is filled with objects,
+ Minor GC is performed and all the survivor objects are moved to one of the survivor spaces.
+
+ 
+Old Generation memory contains the objects that are long-lived and 
+survived after many rounds of Minor GC. Usually, garbage collection is performed in 
+Old Generation memory when it’s full. Old Generation Garbage Collection is called Major GC and usually takes a longer time.
+
+Perm Gem
+........
+
+Permanent Generation or “Perm Gen” contains the application metadata 
+ required by the JVM to describe the classes and methods used in the application. 
+ Note that Perm Gen is not part of Java Heap memory.
+
+
+
+-Xms	For setting the initial heap size when JVM starts
+-Xmx	For setting the maximum heap size.
+-Xmn	For setting the size of the Young Generation, rest of the space goes for Old Generation.
+-XX:PermGen	For setting the initial size of the Permanent Generation memory
+-XX:MaxPermGen	For setting the maximum size of Perm Gen
+-XX:SurvivorRatio	For providing ratio of Eden space and Survivor Space, for example if Young Generation size is 10m and VM switch is -XX:SurvivorRatio=2 then 5m will be reserved for Eden Space and 2.5m each for both the Survivor spaces. The default value is 8.
+-XX:NewRatio	For providing ratio of old/new generation sizes. The default value is 2
+
+
+
+ 

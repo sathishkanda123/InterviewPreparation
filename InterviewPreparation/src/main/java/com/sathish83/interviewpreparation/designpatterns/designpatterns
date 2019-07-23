@@ -35,7 +35,8 @@ Well, there are several ways of doing this in Java. But all of them are based on
 1)Declare a private constructor to prevent others from instantiating the class.
 
 2)Create the instance of the class either during class loading in a static field/block,
-  or on-demand in a static method that first checks whether the instance exists or not and creates a new one only if it doesn’t exist.
+  or on-demand in a static method that first checks whether 
+  the instance exists or not and creates a new one only if it doesn’t exist.
 
 Multiple types of Single Ton
 ...........................

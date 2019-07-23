@@ -4,7 +4,8 @@ what is System.out.println
   
   out – is a static member field of System class and is of type PrintStream
   
-  println – is a method of PrintStream class. println prints the argument passed to the standard console and a newline. 
+  println – is a method of PrintStream class. 
+  println prints the argument passed to the standard console and a newline. 
   
   
 Solid Principles in Java
@@ -16,7 +17,8 @@ Solid Principles in Java
 
 3. Liskov’s Substitution Principle - Derived types must be completely substitutable for their base types
 
-4. Interface Segregation Principle - Clients should not be forced to implement unnecessary methods which they will not use
+4. Interface Segregation Principle - Clients should not be forced to implement 
+                                     unnecessary methods which they will not use
 
 5. Dependency Inversion Principle - Depend on abstractions, not on concretions
 
@@ -118,6 +120,35 @@ Timer in Java
 .............
 Timer and TimerTask are java util classes used to schedule tasks in a background thread. 
 In a few words – TimerTask is the task to perform and Timer is the scheduler.
+
+
+
+Static vs Transient
+...................
+
+Instance Variables: These variables are serialized, so during deserialization we will get back the serialized state.
+
+Static Variables: These variables are not serialized, So during deserialization static variable value will loaded from the class.(Current value will be loaded.)
+
+transient Variables: transient variables are not serialized, so during deserialization those variables will be initialized with corresponding default values (ex: for objects null, int 0).
+
+
+
+To create an immutable class in java, you have to do following steps.
+.....................................................................
+Declare the class as final so it can’t be extended.
+Make all fields private so that direct access is not allowed.
+Don’t provide setter methods for variables
+Make all mutable fields final so that it’s value can be assigned only once.
+Initialize all the fields via a constructor performing deep copy.
+Perform cloning of objects in the getter methods to return a copy rather than returning the actual object reference.
+
+
+
+
+
+
+
 
 
 

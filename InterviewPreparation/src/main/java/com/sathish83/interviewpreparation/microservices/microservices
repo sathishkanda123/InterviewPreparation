@@ -200,11 +200,11 @@ configure some properties
 
   Archaius handles configuration and gives the ability to dynamically change properties
 
+  Zipkin is very efficient tool for distributed tracing in microservices ecosystem
+  
+// Netflix feign client
 
-spring cloud sleth
-zookeeper
-eureka
-hystrix
+
 
 
 

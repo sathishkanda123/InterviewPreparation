@@ -4,7 +4,8 @@ A thread is a lightweight sub-process, the smallest unit of processing.
 Multiprocessing and multithreading, both are used to achieve multitasking.
 
 However, we use multithreading than multiprocessing because threads use a shared memory area. 
-They don't allocate separate memory area so saves memory, and context-switching between the threads takes less time than process
+They don't allocate separate memory area so saves memory, 
+and context-switching between the threads takes less time than process
 A thread is executed inside the process. There is context-switching between the threads.
 There can be multiple processes inside the OS, and one process can have multiple threads.   
 At a time one thread is executed only.
@@ -49,6 +50,83 @@ Completion Time: Time at which process completes its execution.
 Turn Around Time: Time Difference between completion time and arrival time. Turn Around Time = Completion Time – Arrival Time
 Waiting Time(W.T): Time Difference between turn around time and burst time.
 Waiting Time = Turn Around Time – Burst Time
+
+Thread Life cycle
+................
+
+New - created a instance
+
+Runnable - The thread is in runnable state after invocation of start() method, 
+           but the thread scheduler has not selected it to be the running thread.
+           
+Running  - The thread is in running state if the thread scheduler has selected it.
+ 
+Non-Runnable (Blocked) - This is the state when the thread is still alive, but is currently not eligible to run.
+
+Terminated - A thread is in terminated or dead state when its run() method exits.
+
+In Java threads are not killed, but the stopping of a thread is done in a cooperative way. 
+The thread is asked to terminate and the thread can then shutdown gracefully.
+public void interrupt(): interrupts the thread.
+public void suspend(): is used to suspend the thread(depricated).
+
+
+
+
+Thread start and Thread run
+...........................
+
+start
+.....
+when we call the start() method of our thread class instance, a new thread is 
+created with default name Thread-0 and then run()
+method is called and everything inside it is executed on the newly created thread
+
+we can’t call the start() method twice otherwise it will throw an IllegalStateException
+
+
+Run
+...
+no new thread is created and the run() method is executed on the current thread i.e. main thread. Hence,
+no multi-threading took place. The run() method is called as a normal function call.
+
+We can invoke multiple times , it will work as common method
+
+Static vs Volatile Variable
+............................
+
+Static Variable: 
+................
+
+If two Threads(suppose t1 and t2) are accessing the same object and updating a 
+variable which is declared as static then it means t1 and t2 can make their own local 
+copy of the same object(including static variables) in their respective cache,
+so update made by t1 to the static variable in its local cache wont reflect in the static variable for t2 cache .
+
+Volatile variable: 
+..................
+
+If two Threads(suppose t1 and t2) are accessing the same object and updating a 
+variable which is declared as volatile then it means t1 and t2 can make their own local cache of 
+the Object except the variable which is declared as a volatile .
+So the volatile variable will have only one main copy which will be updated by different threads and
+update made by one thread to the volatile variable will immediately reflect to the other Thread.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

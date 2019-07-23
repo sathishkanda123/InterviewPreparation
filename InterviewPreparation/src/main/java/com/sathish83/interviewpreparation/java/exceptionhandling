@@ -1,0 +1,122 @@
+We usually write code in an idealized environment: the filesystem always contains our 
+files, the network is healthy, and the JVM always has enough memory. Sometimes we call this the “happy path”.
+
+In production, though, filesystems can corrupt, networks break down, 
+and JVMs run out of memory. The wellbeing of our code depends on how it deals with “unhappy paths”.
+
+We must handle these conditions because they affect the flow of the application negatively and form exceptions:
+
+
+Ultimately, exceptions are just Java objects with all of them extending from Throwable:
+
+There are three main categories of exceptional conditions:
+
+Checked exceptions
+Unchecked exceptions / Runtime exceptions
+Errors
+
+Checked Exceptions
+..................
+
+Checked exceptions are exceptions that the Java compiler requires us to handle. 
+We have to either declaratively throw the 
+exception up the call stack, or we have to handle it ourselves. More on both of these in a moment.
+
+ex:-
+......................
+
+IoExceptions
+ServletException
+
+
+Unchecked Exceptions
+....................
+Unchecked exceptions 
+are exceptions that the Java compiler does not require us to handle.
+
+Simply put, if we create an exception that extends 
+RuntimeException, it will be unchecked; otherwise, it will be checked.
+
+ex:-
+NullPointerException, ArrayIndexOutOfBoundsException,
+ClassCastException,NumberFormatException,IllegalArgumentException, and SecurityException.
+
+
+
+Errors
+........
+Errors represent serious and usually irrecoverable conditions like a library incompatibility, infinite recursion, or memory leaks.
+
+And even though they don’t extend RuntimeException, they are also unchecked.
+
+Ex-
+StackOverflowError and OutOfMemoryError.
+
+
+OutOfMemoryError
+...............
+
+Usually, this error is thrown when the Java Virtual Machine cannot allocate an object because 
+it is out of memory, and no more memory could be made available by the garbage collector.
+
+
+
+
+
+
+
+
+
+
+
+Difference between class not found exception and NoClassDefFoundError
+.....................................................................
+
+ClassNotFoundException and NoClassDefFoundError occur when a 
+particular class is not found at runtime. However, they occur at different scenarios.
+
+ClassNotFoundException
+......................
+
+ClassNotFoundException is a runtime exception that is thrown when an application tries to load a 
+class at runtime using the Class.forName() or loadClass() or 
+findSystemClass() methods ,and the class with specified name are not found in the classpath
+
+NoClassDefFoundError
+....................
+
+NoClassDefFoundError is an error that is thrown when the Java Runtime System tries 
+to load the definition of a class, and that class definition is no longer available. 
+The required class definition was present at compile time, but it was missing at runtime. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

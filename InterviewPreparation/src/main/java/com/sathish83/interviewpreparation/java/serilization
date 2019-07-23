@@ -14,9 +14,15 @@ Points to remember
 
 SerialVersionUID
 ................
-The Serialization runtime associates a version number with each Serializable class called a SerialVersionUID, which is used during Deserialization to verify that sender and reciever of a serialized object have loaded classes for that object which are compatible with respect to serialization. If the reciever has loaded a class for the object that has different UID than that of corresponding sender’s class, the Deserialization will result in an InvalidClassException.
- A Serializable class can declare its own UID explicitly by declaring a field name.
- A Serializable class can declare its own UID explicitly by declaring a field name.
+The Serialization runtime associates a version number with each Serializable class called a SerialVersionUID, 
+which is used during Deserialization to verify that sender and reciever 
+of a serialized object have loaded classes for that object which are 
+compatible with respect to serialization. 
+If the reciever has loaded a class for the object that has different UID than that of 
+corresponding sender’s class, the Deserialization will result in an InvalidClassException.
+
+A Serializable class can declare its own UID explicitly by declaring a field name.
+A Serializable class can declare its own UID explicitly by declaring a field name.
 It must be static, final and of type long.
 i.e- ANY-ACCESS-MODIFIER static final long serialVersionUID=42L;
 

@@ -12,5 +12,6 @@ public interface FunctionalInterfaces {
     default void testMethod3() {
     	System.out.println("Hai am default 2md method");
     }
+    
 }
 

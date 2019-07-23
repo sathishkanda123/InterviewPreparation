@@ -34,7 +34,8 @@ An anonymous inner class can be useful when making an instance of an object with
 A class i.e. created inside a method is called local inner class in java. If you want to invoke the methods of local inner class, you must instantiate this class inside the method.
 Local variable can't be private, public or protected.
 Local inner class cannot be invoked from outside the method.
-Local inner class cannot access non-final local variable till JDK 1.7. Since JDK 1.8, it is possible to access the non-final local variable in local inner class.
+Local inner class cannot access non-final local variable till JDK 1.7. 
+Since JDK 1.8, it is possible to access the non-final local variable in local inner class.
 
 4) Static nested class
 ......................

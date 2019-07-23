@@ -106,7 +106,8 @@ Also the variable name should be same in the class where we will inject the depe
  application -- A single instance will be created and available during complete lifecycle of ServletContext
              In application scope, container creates one instance per web application runtime. 
              It is almost similar to singleton scope, with only two differences i.e.
-             application scoped bean is singleton per ServletContext, whereas singleton scoped bean is singleton per ApplicationContext. 
+             application scoped bean is singleton per ServletContext, 
+             whereas singleton scoped bean is singleton per ApplicationContext. 
              Please note that there can be multiple application contexts for single application.
   
   
@@ -273,7 +274,8 @@ Read more: https://javarevisited.blogspot.com/2017/11/difference-between-compone
 Spring MVC flow
 ...............
 Step 1: First request will be received by DispatcherServlet
-Step 2: DispatcherServlet will take the help of HandlerMapping and get to know the Controller class name associated with the given request
+Step 2: DispatcherServlet will take the help of HandlerMapping and get to know the Controller 
+class name associated with the given request
 Step 3: So request transfer to the Controller, and then controller will process the request by executing appropriate methods and
  returns ModeAndView object (contains Model data and View name) back to the DispatcherServlet
 Step 4: Now DispatcherServlet send the model object to the ViewResolver to get the actual view page

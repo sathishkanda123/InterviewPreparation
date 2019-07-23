@@ -4,7 +4,8 @@ The CharSequence interface is used to represent the sequence of characters
 
 
 
-Whenever a String Object is created, two objects will be created- one in the Heap Area and one in the String constant pool 
+Whenever a String Object is created, 
+two objects will be created- one in the Heap Area and one in the String constant pool 
 and the String object(new) reference always points to heap area object and string literal always refers scp
 
 /
@@ -21,7 +22,10 @@ String s = str;
 
  str = str.concat(" base");
  
- When the above statement is executed, the VM takes the value of String str, i.e. "knowledge" and appends " base", giving us the value "knowledge base". Now, since Strings are immutable, the VM can’t assign this value to str, so it creates a new String object, gives it a value "knowledge base", and gives it a reference str.
+ When the above statement is executed, the VM takes the value of String str, 
+ i.e. "knowledge" and appends " base", giving us the value "knowledge base". 
+ Now, since Strings are immutable, the VM can’t assign this value to str, 
+ so it creates a new String object, gives it a value "knowledge base", and gives it a reference str.
 
 An important point to note here is that, while the String object is immutable, its reference variable is not. 
 
@@ -37,8 +41,10 @@ Next, the VM creates another new String "java rules", but nothing refers to it. 
 
 Almost every method, applied to a String object in order to modify it, creates new String object. So, where do these String objects go? Well, these exist in memory, and one of the key goals of any programming language is to make efficient use of memory.
 
-As applications grow, it’s very common for String literals to occupy large area of memory, which can even cause redundancy. 
-So, in order to make Java more efficient, the JVM sets aside a special area of memory called the “String constant pool“.
+As applications grow, it’s very common for String literals to occupy large area of memory,
+ which can even cause redundancy. 
+So, in order to make Java more efficient,
+ the JVM sets aside a special area of memory called the “String constant pool“.
 
 In the String constant pool, a String object is likely to have one or many references.
 If several references point to same String without even knowing it, 

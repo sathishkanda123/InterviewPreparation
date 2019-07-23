@@ -11,11 +11,17 @@ public class DifferentTypesOfInnerClasses {
 	private int a = 30;
 	
 	
-	static class StaticsClass{
+   public static class StaticsClass{
 		
 		static void staticMethod() {
 			System.out.println("Static method class..");
 		}
+		
+		public StaticsClass(int b) {
+	
+			System.out.println(b);
+		}
+		
 	}
 	
 	
@@ -55,6 +61,7 @@ public class DifferentTypesOfInnerClasses {
 		
 		DifferentTypesOfInnerClasses outside=new DifferentTypesOfInnerClasses();
 		
+		
 		//member inner class 
 		DifferentTypesOfInnerClasses.MemberInnerClass innerclass1 = outside.new MemberInnerClass();
 		innerclass1.innerMethod();
@@ -74,6 +81,9 @@ public class DifferentTypesOfInnerClasses {
 
 		//static class
 		DifferentTypesOfInnerClasses.StaticsClass.staticMethod();
+		
+		
+		
 
 	}
 	

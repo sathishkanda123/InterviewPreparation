@@ -2,10 +2,15 @@ package com.sathish83.interviewpreparation.collections;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
+import java.util.TreeSet;
 
 public class CollectionFunctions {
 
@@ -23,6 +28,7 @@ public class CollectionFunctions {
 		hashMap();
 		linkedHashMap();
 		treeMap();
+		immutableCollection();
 		synchronizedCollection();
 		concurrentCollection();
 		failFast();
@@ -33,6 +39,20 @@ public class CollectionFunctions {
 		reverseOrder();
 		collectionClass();
 	}
+	
+	private static void immutableCollection() {
+		
+		System.out.println("Immutable collection...");
+		List<Integer> lists =new ArrayList<Integer>();
+		lists.add(10);
+		lists.add(20);
+		lists.add(30);
+		lists.forEach(System.out::println);
+		lists.add(50);
+		lists=Collections.unmodifiableList(lists);  // java.lang.UnsupportedOperationException
+	
+	}
+	
 
 	private static void collectionClass() {
 		// TODO Auto-generated method stub
@@ -81,6 +101,8 @@ public class CollectionFunctions {
 
 	private static void treeMap() {
 		
+		
+		
 	}
 
 	private static void linkedHashMap() {
@@ -88,10 +110,27 @@ public class CollectionFunctions {
 
 	private static void hashMap() {
 		
+		System.out.println("Hash map duplicate check");
+		
+		Map<String,String> hashmapDuplicate = new HashMap<>();
+		hashmapDuplicate.put("sathish","ceo");
+		hashmapDuplicate.put("sathish","worker");
+		hashmapDuplicate.put("sathish","TEACHER");
+		System.out.println(hashmapDuplicate);
 	}
 
 	private static void treeSet() {
 		
+	System.out.println("Set values is");
+	
+	Set<String> duplicatecheck = new HashSet<String>();
+	duplicatecheck.add("Sathish");
+	duplicatecheck.add("Yathessh");
+	duplicatecheck.add("Tiru");
+	duplicatecheck.add("Sathish");
+	
+	duplicatecheck.forEach(v->System.out.println(v));
+	
 	}
 
 	private static void hashSet() {

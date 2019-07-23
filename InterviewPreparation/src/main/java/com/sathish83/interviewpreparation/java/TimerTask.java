@@ -27,10 +27,6 @@ public class TimerTask {
 		}
 	};
 	
-	
-	
-	
-
 	/*
 	 * 
 	 * task - task to be scheduled.
