@@ -1,0 +1,190 @@
+I tried to remmber all , but missed some questions
+
+My Interviews at 2019 
+.....................
+
+1) IBM
+
+   what is Richardson MaturityModel ?
+   what is and how you will do Databasesharding  ?
+   What is eurekaserver and eureka client
+   what is N+1 problem
+   what is cap therom
+   Which design pattern is used to provide object dynamically
+   what is transitive dependency
+   Relationships in Nosql   
+   Spring webflux
+   Jvm method areas 
+
+2) Incedo
+
+Round 1
+.......
+   
+   Java and Spring
+   ...............
+   
+   whats is autoboxing
+   Internel structure of Consurrent hash map
+   difference syncronized collections and concurrent collections
+   What is string immutable
+   how to make class as Immutable
+   what is Real difference between abstract and interface
+   What is difference between linked list and array list and whats its time complexity while inserting and searching for a value
+   what is spring boot ? and how its differ from sprig mvc and spring framework
+   what is difference between Runnable and callable ?
+   what happen if i start thread twice 
+   what is producer and consumer problem
+   what is executors service
+   How hashmap works internally and why hashcode and equals method should override?
+   how to get second employee salary form employee table
+   Java  7 and java 8 features
+   what is the use of streams
+   how to implement composite key in hibernate
+   how agile makes differnce in projects
+   
+   Front end questions
+   ...................
+   
+  1) What is pipes in angular and how to create custom pipes
+  2) what is observable and subscriber
+  3) How routing works in angular and what modules reuire to set up
+  4) what are the life cycle hooks of angular 
+  5) what is behaviour subject
+  6) what are the new features in es6 and css3
+  7) how position absolute and relative works
+  
+
+ Round 2
+ .......
+
+   1) What is microservices and what are the advantages and disadvantages
+   2) What is api gateway and what framework you used to acheive
+   3) what is feign client 
+   4) How load balancing works in microservices
+   5) Draw one micro service architecture for medical repo application
+   6) How to trace the request in microservices
+   7) what is splunk and how to integrate 
+   8) How rabbit mq works and give one example in microservices
+   9) How to maintain data consitency in databases in microservices
+  10) what is spring acutator
+  11) How logs ara captured using spring aop
+  12) what is Junit and Mockito
+  
+
+3) Dell
+   ....
+   
+    Round 1
+	.......
+	
+	1) Write one sample rest application 
+	2) How to configure autoconfigurations in spring boot
+	3) How spring boot works internally and what are the required things to start a spring boot application
+	4) Write one rabbit mq producer and rabbit mq listner
+	5) Print 1 to 10 with out using for loop 
+	6) How to create instances in pivotal cloud and how to add services in pivotal cloud
+	7) Tell some sample commands used in pivotal cloud
+	8) what is docker and how its differnce between vm
+	9) Do you have any idea about how payment gateway works ?
+	10) How spring schedular works and can you tell me the annotations we used for scheduling
+    11) How to handle exceptions globally in spring and how to write custom exceptions for application based
+	12) What is synchronization and concurrency
+	13) what is jackson implementation
+    14) How you do integration tests
+	
+   
+   Round 2 and Round 3
+   ...................
+
+    In round 2 , they tested how i understand the projects almost 45 mins round was happen ,  they asked about flow , architecture and technologies
+    Mostly asked question are how business works, and why you choose this flow , why cant use different technologies
+
+   In round 3
+   ..........
+   1) String duplication
+   2) Sql queries to find the ranks of student with score columns
+   3) What do you know about dell and why you are intrested to join
+   4) what are the challenges you faced in curent project and how you manage
+   5) At which time you will go for microservices architecture
+   6) what is vertical scaling and Horizantal scaling
+   7) How threads works and how can i used shared variable for threads
+   8) How to save a files in servers(Objectstreams)
+   9) a pow b + b pow a = 1245; what is a ? and what is b ? 
+  10) what is kafka 
+  11) Compiler vs interpretor
+  12) How you maintain configuration(properties) in your application and how it works for non prod and prod environments
+    
+ 
+4) GE
+
+   Round 1
+   .......
+    Written test
+	
+	1) Custom implemnetation of Hash map
+	2) Company can generate pens(n) , what is the least days to generate n pens
+	   constraints
+	   ..........
+	   1) company can increase production by 1 or double the production 
+	   2) Time complexity should be less than 0(n)
+	   
+	 ex:- client requires 7 pens to generate 
+     day  1 - generated 1 pens - single 
+	 daya 2 - genarted 2 pens  - double   
+	 daya 3 - genarate	4 pens - double 
+	 
+	 Totally for geneating 7 pens he took 3 days
+	 
+   
+   round 2
+   .......
+   
+   1) Request to draw microservice architecture for amazon 
+   website
+   2) what is single point of failure in your drwan structure
+   3) what is rxjs and redux
+   4) write a sample program for binary tree
+   5) what is factory design pattern
+   6) how to implement multiple thread functionality using executors
+   7) what is completeble future
+   8) How angular 2 version is differ from angular 1 
+   9) how you minimize the loading of pages in angular or react
+  10) what is angular pipes
+  11) How datbase consitency maintains in microservices
+  12) what is docker and kubernetes
+  13) How Amazon s3 is configured in your application
+
+   
+   Round 3
+   .......
+   
+   1) what is circuit break pattern and fault tolernce pattern
+   2) how pivotal cloud is differnt from amazon 
+   3) how to load millions of data from database at instant
+   4) how to make automate flow service calls (A->B->C->D)
+   5) Eureka registery 
+   6) How hystrix works and what are the annotations used
+   7) What you learn new technologies which is not part of your project
+   8) what do you know about our company 
+   9) what is config server 
+  10) Hibernate mappings for one to many  
+  11) how you add custom services in pivotal cloud
+  12) what is idanywhere and how you implemented in your project
+  13) what design pattern you will prefer while object creation(Object pool or Single ton-- i said) and why ?
+   
+
+5) Barcode (Only for front end)  
+
+   what is prototype
+   what is Hoisting
+   How to get keys and values from json object
+   what is apply and call 
+   write sample code for sorting in javascript
+   how to inject services in angular
+   how to draw a circle with using css(with out image)
+   what is float in css
+   how responsive handles in your project
+   what is webpack and what are the files requires to configure
+   what is ajax and how its works
+ 
