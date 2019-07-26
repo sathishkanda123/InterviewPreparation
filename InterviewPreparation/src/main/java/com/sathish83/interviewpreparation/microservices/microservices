@@ -204,6 +204,15 @@ configure some properties
   
 // Netflix feign client
 
+Api gateways
+...........
+
+Many commercial SaaS products like Apigee (now owned by Google), Axway, App42, and Azure 
+
+Few open source gateways, like APIUmbrella, Gravitee, etc., also provide the 
+flexibility of API management. If you are in the Java/Spring world, you can choose 
+to work with edge servers like Netflix Zuul or Spring Cloud Gateway which you can 
+customize to add more features than are available with a commercial gateway.
 
 
 

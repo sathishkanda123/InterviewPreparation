@@ -121,6 +121,27 @@ Object poll()-	It is used to retrieves and removes the head of this deque, or re
 Object element()	-It is used to retrieves, but does not remove, the head of this deque.
 Object peek()-It is used to retrieves, but does not remove, the head of this deque, or returns null if this deque is empty.
 
+Blocking Queue
+.............
+
+Blocking queue is a concurrent utility class , which supports flow control by introducing
+blocking if either Blocking queue is full or empty
+
+A thread trying to enqueue an element in a full queue is blocked until some other threads
+make space in the queue
+Similarly it blocks a thread trying to delete or take element from an empty queue until some other threads 
+waiting for an item
+
+The BlockingQueue are two types-
+...............................
+Bounded  - BlockingQueue blockingQueue = new LinkedBlockingDeque(5); - it fixed
+Unbounded  - BlockingQueue blockingQueue = new LinkedBlockingDeque(); - size grows dynamically
+
+ 
+
+
+
+
 Set - Hash set , linked list and Tree set 
 ...
 Unordered elements of set , not allow duplicate values

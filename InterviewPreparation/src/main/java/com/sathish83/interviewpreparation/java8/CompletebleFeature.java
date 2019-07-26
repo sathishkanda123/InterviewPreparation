@@ -20,14 +20,11 @@ public class CompletebleFeature {
 	void testMultipleFeature() {
 
 		for (int i = 1; i <= 10; i++) {
-
-			  CompletableFuture.supplyAsync(()->getOrder()).
+			 CompletableFuture.supplyAsync(()->getOrder()).
 			  thenApply(value->addValue(value)). thenApply(value->subValue(value)).
 			  thenAccept(value->finalcalc(value));
-			  
 			  }
-
-	}
+	   }
 
 	private Integer finalcalc(Integer value) {
 		System.out.println(Thread.currentThread().getName());

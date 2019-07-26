@@ -1,0 +1,19 @@
+Oauth2 - is a protocol to provide temporary access to a resource
+..... 
+
+webserver flow
+..............
+
+Ex:- user -> app (our app asking to login with google)
+
+User login with google - and get grant(code)
+
+and provide that grant to server which he requesting to access
+
+and with that grant-temperory, server(app) will communicate with google to get access token
+
+with that access token server will communicate Google resource server to get details
+
+IdAnywhere - ia  a thin layer built top on oauth2 for login
+........... 
+

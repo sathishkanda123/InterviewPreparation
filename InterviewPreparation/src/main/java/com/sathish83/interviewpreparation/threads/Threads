@@ -114,6 +114,19 @@ update made by one thread to the volatile variable will immediately reflect to t
 
 
 
+Scatter and Gather Pattern
+..........................
+
+Call api parallely and wait tasks to complete and return the solution
+
+
+Data Races
+..........
+Mutiple thread update same varaible to same memory address
+
+Race condition  -> when output of computation depands on relatively ordering od thread
+...............    instructions
+
 
 
 
