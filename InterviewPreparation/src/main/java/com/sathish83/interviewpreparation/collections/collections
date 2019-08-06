@@ -18,7 +18,8 @@ ArrayList grows dynamically as the elements are added to it.
 If the size of the current elements (including the new element to be added to the ArrayList) is 
 greater than the maximum size of the array then increase the size of array.
 But the size of the array can not be increased dynamically.
-So, what happens internally is, a new Array is created and the old array is copied into the new array(Arrays.copyOf(oldarray,length)).
+So, what happens internally is, 
+a new Array is created and the old array is copied into the new array(Arrays.copyOf(oldarray,length)).
 int newCapacity = oldCapacity + (oldCapacity >> 1);
 
 
@@ -30,9 +31,11 @@ Maintains Insertion order
 Non synchronized
 Items can be added or removed from the middle of the list
 Manipulation is fast , because no shifting is required
-There is no "random" access - it is impossible to reach the nth item in the array without first iterating over all items up 
+There is no "random" access - 
+it is impossible to reach the nth item in the array without first iterating over all items up 
 until that item. This means 
-we have to start from the beginning of the list and count how many times we advance in the list until we get to the desired item.
+we have to start from the beginning of the 
+list and count how many times we advance in the list until we get to the desired item.
 
 InternalImplementationOfLinkedList
 .................................
@@ -69,7 +72,7 @@ Memory usage
 A LinkedList consumes more memory than an ArrayList because of every node in a LinkedList stores two references,
 one for its previous element and one for its next element, whereas ArrayList holds only data and its index.
 
-Stack
+ Stack
 .....
 last-in-first-out
 
@@ -84,12 +87,14 @@ int search(Object element) : It determines whether an object exists in the stack
 
 CopyOnWriteArrayList
 ....................
-CopyOnWriteArrayList class is introduced in JDK 1.5, which implements List interface. It is enhanced version of ArrayList in which all modifications (add, set, remove, etc) 
+CopyOnWriteArrayList class is introduced in JDK 1.5, which implements List interface.
+ It is enhanced version of ArrayList in which all modifications (add, set, remove, etc) 
 are implemented by making a fresh copy.
 
 The design of the CopyOnWriteArrayList uses an interesting technique to make it thread-safe without a 
 need for synchronization. When we are using any of the modify methods – 
-such as add() or remove() – the whole content of the CopyOnWriteArrayList is copied into the new internal copy.
+such as add() or remove() – the whole content of the CopyOnWriteArrayList is 
+copied into the new internal copy.
 you can see diffrence in opertaion on next
 
 

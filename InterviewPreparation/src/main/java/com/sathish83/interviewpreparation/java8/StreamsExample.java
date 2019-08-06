@@ -11,11 +11,12 @@ import com.sathish83.interviewpreparation.model.JobSeeker;
 
 public class StreamsExample {
 
-	private void sort(List<Integer> numbers) {
+	private void sort(List<Integer> numbers) throws InterruptedException {
 		System.out.println("Sorted order is");
 	    numbers.stream().sorted().forEach(x->System.out.println(x));
 	    System.out.println("Sorted Reverse order is");
 	    numbers.stream().sorted(Comparator.reverseOrder()).forEach(x->System.out.println(x));
+    	wait();
 	}
 	
 	//reduction stream operations allow us to produce one single result from a sequence of elements,
@@ -67,7 +68,8 @@ public class StreamsExample {
 		totalNumbers.add(40);
 		totalNumbers.add(50);
 		System.out.println("Parllel stream");
-		totalNumbers.parallelStream().forEach(val->System.out.println(val.toString())); //parllel strem print all values and throw null poiner exception
+		totalNumbers.parallelStream().forEach(val->System.out.println(val.toString())); 
+		//parllel strem print all values and throw null poiner exception
 		System.out.println("Normal Stream");
 		totalNumbers.stream().forEach(System.out::println);
 		
@@ -84,7 +86,6 @@ public class StreamsExample {
 		sr.map(numbers);
 		sr.filter(numbers);
 		sr.distinct(numbers);
-		sr.sort(numbers);
 		sr.reduce(numbers);
 		sr.nullCheck(numbers);
 		sr.findElementandCount(numbers);

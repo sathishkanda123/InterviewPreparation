@@ -1,5 +1,18 @@
 https://www.journaldev.com/2856/java-jvm-memory-model-memory-management-in-java
 
+Jvm
+...
+
+Stack Memory in Java
+...................
+Stack Memory in Java is used for static memory allocation and the execution of a thread. 
+It contains primitive values that are specific to a method and references to objects that are in a heap, 
+referred from the method.
+
+60
+If this memory is full, Java throws java.lang.StackOverFlowError
+
+
 Java (JVM) Memory Model
 .......................
 
@@ -27,11 +40,9 @@ Old Generation memory when it’s full. Old Generation Garbage Collection is cal
 
 Perm Gem
 ........
-
 Permanent Generation or “Perm Gen” contains the application metadata 
- required by the JVM to describe the classes and methods used in the application. 
- Note that Perm Gen is not part of Java Heap memory.
-
+required by the JVM to describe the classes and methods used in the application. 
+Note that Perm Gen is not part of Java Heap memory.
 
 
 -Xms	For setting the initial heap size when JVM starts
@@ -41,6 +52,17 @@ Permanent Generation or “Perm Gen” contains the application metadata
 -XX:MaxPermGen	For setting the maximum size of Perm Gen
 -XX:SurvivorRatio	For providing ratio of Eden space and Survivor Space, for example if Young Generation size is 10m and VM switch is -XX:SurvivorRatio=2 then 5m will be reserved for Eden Space and 2.5m each for both the Survivor spaces. The default value is 8.
 -XX:NewRatio	For providing ratio of old/new generation sizes. The default value is 2
+
+
+Memory Management in Java – Java Garbage Collection Types
+.........................................................
+There are five types of garbage collection types that we can use in our applications. 
+We just need to use the JVM switch to enable the garbage collection strategy for the application. 
+Let’s look at each of them one by one.
+
+1.Serial GC (-XX:+UseSerialGC) --> 
+............................. 
+
 
 
 

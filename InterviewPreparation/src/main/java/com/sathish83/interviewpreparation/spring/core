@@ -84,7 +84,8 @@ Also the variable name should be same in the class where we will inject the depe
   constructor autowiring is the analogous to byType autowiring. 
   In case of constructor autowiring, spring container fulfills constructor argument autowiring only. 
 3)no - dependency injection will not be achieved using @Autowired annotation - "default" autowiring is "no". 
-4)default - default-autowire is used at parent <beans> tag level. Using default-autowire we change the default autowire of bean in our XML configuration
+4)default - default-autowire is used at parent <beans> tag level.
+ Using default-autowire we change the default autowire of bean in our XML configuration
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -164,7 +165,9 @@ Hibernate Tutorial
 Spring Batch
 Understanding Spring bean life cycle
 
-The Spring bean life cycle is easy to understand. When a bean is instantiated, it may be required to perform some initialization to get it into a usable state. Similarly, when the bean is no longer required and is removed from the container, some cleanup may be required.
+The Spring bean life cycle is easy to understand. When a bean is instantiated,
+it may be required to perform some initialization to get it into a usable state. 
+Similarly, when the bean is no longer required and is removed from the container, some cleanup may be required.
 Though, there is lists of the activities that take place behind the scenes between the time of bean Instantiation and its destruction, but this chapter will discuss only two important bean life cycle callback methods which are required at the time of bean initialization and its destruction.
 Beans can be notified after creation and all properties are set, and before they are destroyed and removed from the bean container. This involves specifying the callback method to be invoked by the container. This is done in XML by specifying attributes init-method=”myinit”, for the initialization callback, and destroy-method=”mydestroy”, for the destroy callback. “myinit” and “cleanUp” are names of instance methods in the bean class.
 Initialization callbacks

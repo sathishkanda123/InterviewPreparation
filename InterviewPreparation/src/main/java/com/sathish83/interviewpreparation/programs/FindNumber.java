@@ -9,8 +9,7 @@ import java.util.List;
  */
 public class FindNumber {
 	
-	
-	static void findClosestValue(int target) {
+	static void findValue(int target) {
 		
 		List<Integer> araylists = Arrays.asList(3,4,1,5,6,8,9,11,100,50);
 		int index=Collections.binarySearch(araylists, target);
@@ -23,13 +22,7 @@ public class FindNumber {
 	
 	public static void main(String[] args) {
 		 System.out.println("Find the closet value of given array");
-		 findClosestValue(8); 
-		 
+		 findValue(8); 
 	}
-	
-	
-	
-	
-	
 
 }

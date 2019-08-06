@@ -28,8 +28,10 @@ Round Robin Scheduling
 
 Non-Preemptive Scheduling:
 ..........................
-A scheduling discipline is nonpreemptive if, once a process has been given the CPU, the CPU cannot be taken away from that process
-Non-preemptive Scheduling is used when a process terminates, or a process switches from running to waiting state. 
+A scheduling discipline is nonpreemptive if, once a process has been given the CPU,
+ the CPU cannot be taken away from that process
+Non-preemptive Scheduling is used when a process 
+terminates, or a process switches from running to waiting state. 
 
 Algorithms
 ..........
