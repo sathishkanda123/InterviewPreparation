@@ -157,6 +157,7 @@ ES6 and ES2015 are the same thing.
 ECMAScript specifications made the decision to move to annual updates. With this change, 
 the edition was renamed to ES 2015 to reflect the year of release. 
 
+// in test.js file specifed te features and examples
 ES2016 (ES7) - June 2016
 ............
 
@@ -167,12 +168,115 @@ ES2017 (ES8) - June  - 2017
 Questions for Interview
 .......................
 
-what are es2019 features
-....................
-1) Array.flat();
+1) What is Destructing in java script
+   ..................................
+   Destructuring simply implies breaking down a complex structure into simpler parts
+   Destructuring syntax can be used for variable declaration or variable assignment.
+   Object Destructuring
+   ....................
+   const student = {
+    firstname: 'Glad',
+    lastname: 'Chinda',
+    country: 'Nigeria'
+  };
+
+  // Object Destructuring 
+  const { firstname, lastname, country } = student;
+
+  console.log(firstname, lastname, country); // Glad Chinda Nigeria
+   
+2) What is call,apply and bind methods
+   You can use call()/apply() to invoke the function immediately
+   
+   The call() method takes arguments separately.
+
+   The apply() method takes arguments as an array.
 
 
+var person = {
+  fullName: function(city, country) {
+    return this.firstName + " " + this.lastName + "," + city + "," + country;
+  }
+}
 
+person.fullName.apply(person1, ["Oslo", "Norway"]);
+person.fullName.call(person1, "Oslo", "Norway");
+
+
+3) what is closure in java script
+   A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a
+   closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.
+   To use a closure, define a function inside another function and expose it. To expose a function, return it or pass it to another function.
+  
+4) What is prototypes in Javascript
+   All JavaScript objects inherit properties and methods from a prototype:
+   The Object.prototype is on the top of the prototype inheritance chain:
+   Sometimes you want to add new properties (or methods) to all existing objects of a given type.
+   Sometimes you want to add new properties (or methods) to an object constructor.
+   // how it  works
+    When we try to access a property of an object, JavaScript engines first tries to find the property on the object,
+    if the property is present on the object it outputs its value. But, if the property is not present on the object 
+    then it tries to find the property on the prototype object or dunder proto of the object. 
+    If the property is found the value is returned else JavaScript engine tries to find the property on the dunder proto of the object. 
+    This chain continues until the dunder proto property is null. In these cases, the output will be undefined.
+   
+5) what are the ways to create a object in javascript
+   a) using literal 
+      var a ={
+         a:10,
+         b:"sathish"
+        }
+   b) using new Object syntax
+      var human = new Object()
+      console.log(human);// Creates an empty object
+   
+   c) Object Constructor same as java class
+      function construFun(){
+      
+      }
+      var ob= new constructFun();
+   d) Object.create method Object.create(prototype_object, propertiesObject)  
+      prototypeObject: Newly created objects prototype object. It has to be an object or null.
+      propertiesObject: Properties of the new object. This argument is optional 
+           propertiesObject is used to create properties on new object. 
+           It acts as a descriptor for the new properties to be defined. Descriptors can be data descriptor or access descriptors.
+           Data descriptors are
+           configurable
+           enumerable
+           value
+           writable
+           Access descriptors are
+           get
+           set  
+      
+6) What is inheritence in javascrpt
+    uses the concept of prototypes and prototype chaining for inheritance.
+    Prototype chaining means an object’s dunder proto or proto property will point to another object instead of pointing to the constructor function prototype. 
+    If the other object’s dunder proto or proto property points to another object it will result in the chain. This is called Prototype Chaining.
+    
+7) what are the different ways to call asynchrouous
+    
+   a) callbacks
+      .........
+      A callback is a function that is passed to another function. 
+      When the first function is done, it will run the second function.       
+      
+      The problem with callbacks is it creates something called “Callback Hell.” 
+      Basically, you start nesting functions within functions within functions,
+      and it starts to get really hard to read the code.
+      
+   b) Promises
+   c) Async and Await
+      Async functions enable us to write promise based code as if it were synchronous, but without blocking the execution thread
+      The await operator is used to wait for a Promise. It can be used inside an Async block only
+         
+        
+      
+      
+     
+    
+      
+   
 
 
 

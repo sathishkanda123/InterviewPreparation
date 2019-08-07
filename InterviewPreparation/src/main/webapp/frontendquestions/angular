@@ -84,21 +84,8 @@ export class HighlightDirective {
 <p appHighlight>Highlight me!</p>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 What is BehaviorSubject, ReplaySubject and AsyncSubject.
 ......................................................
-
 
 Behaviour Subject ->
 ....................
@@ -133,7 +120,8 @@ subject.next(Math.random())
 
 AsyncSubject
 ............
-The AsyncSubject is aSubject variant where only the last value of the Observable execution is sent to its subscribers, and only when the execution completes
+The AsyncSubject is aSubject variant where only 
+the last value of the Observable execution is sent to its subscribers, and only when the execution completes
 
 
 const subject = new Rx.AsyncSubject();
@@ -145,20 +133,63 @@ subject.subscribe((data) => {
 
 subject.next(Math.random())
 
-
-
-
-
-
-
-
-
-
-
-
-
  
 .................
+Observables
+............
+
+Angular uses observable which is implemented with RxJS library for work with asynchronous events. 
+
+public getApiData(): Observable<UserApiInterface[]> { 
+ this.apiData = this.http.get<UserApiInterface[]>(‘https://jsonplaceholder.typicode.com/posts'); 
+}
+this.observableService.getApiData().subscribe( 
+  res => {console.log(res); 
+  this.apiData = res; }, 
+ );
+
+
+Angular Http Client
+...................
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+
+
+@Injectable()
+export class ConfigService {
+  constructor(private http: HttpClient) { }
+
+  getConfig() {
+    return this.http.get(this.configUrl);
+  }
+
+}
+
+showConfig() {
+  this.configService.getConfig()
+    .subscribe((data: Config) => this.config = {
+        heroesUrl: data['heroesUrl'],
+        textfile:  data['textfile']
+       },
+        error => this.error = error // error path 
+   );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                    
