@@ -1,23 +1,22 @@
+https://www.youtube.com/watch?v=NU_1StN5Tkk
 
 Design Patterns
 ...............
 
 
-   Creational                           Structural                   Behavioural
-   ..........                           ..........                   ...........
+   Creational(creation of objects)      Structural(Relationship of objects)           Behavioural(Communication between objects)
+   ..........                           ..........                                      ...........
 
-1. SingleTon                        1. Adapter Pattern             1. Chain of Responibility  
-2. Factory                          2. Bridge Pattern              2. Command
-3. Abstract Factory                 3. Composite Pattern           3. Interpretor
-4. Builder                          4. Decorator Pattern           4. Interator
-5. Prototype Pattern                5. Facade Pattern              5. Observer
-6. Object Pool pattern              6. Flyweight                   6. State
-                                    7. Proxy                       7. Strategy
-                                                                   8. Template 
-                                                                   9. Mediator
-                                                                   10.Memento
-
-
+1. SingleTon                        1. Adapter Pattern                                1. Chain of Responibility
+2. Factory                          2. Bridge Pattern                                 2. Command
+3. Abstract Factory                 3. Composite Pattern                              3. Interpretor
+4. Builder                          4. Decorator Pattern                              4. Interator
+5. Prototype Pattern                5. Facade Pattern                                 5. Observer
+6. Object Pool pattern              6. Flyweight                                      6. State
+                                    7. Proxy                                          7. Strategy
+                                                                                      8. Template
+                                                                                      9. Mediator
+                                                                                      10.Memento
 
 Creational
 ..........
