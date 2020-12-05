@@ -14,7 +14,7 @@
 	<description>I created this repository for my interview preparation , which consists of all interview questions like Design patterns samples,Data-structures , Spring boot , Hibernate , Angular , Docker,Kubernetes</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>

@@ -13,7 +13,7 @@ public class FindNumber {
 		
 		List<Integer> araylists = Arrays.asList(3,4,1,5,6,8,9,11,100,50);
 		int index=Collections.binarySearch(araylists, target);
-		if(index>0) {
+		if(index>=0) {
 			System.out.println("Value found at"+index);
 		}else {
 			System.out.println("Value Not found");
@@ -22,7 +22,7 @@ public class FindNumber {
 	
 	public static void main(String[] args) {
 		 System.out.println("Find the closet value of given array");
-		 findValue(8); 
+		 findValue(3);
 	}
 
 }

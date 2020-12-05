@@ -72,7 +72,8 @@ JIT compilation is the default when you run the ng build (build only) or ng serv
 The ng build command with the --prod meta-flag (ng build --prod) compiles with AOT by default.
 
 Faster rendering:
-With AOT, the browser downloads a pre-compiled version of the application.render the application immediately, without waiting to compile the app first.
+With AOT, the browser downloads a pre-compiled version of the application.render 4
+the application immediately, without waiting to compile the app first.
 
 Fewer asynchronous requests:
 The compiler inlines external HTML templates and CSS style sheets within the application JavaScript, eliminating separate ajax requests for those source files

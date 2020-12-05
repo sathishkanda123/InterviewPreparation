@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import org.omg.CORBA.INTERNAL;
+
 
 import com.sathish83.interviewpreparation.model.JobSeeker;
 

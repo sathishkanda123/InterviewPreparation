@@ -13,6 +13,14 @@ public class ParallelStreams {
             try { Thread.sleep(100); } catch (Exception ignore) {}
             System.out.print((System.currentTimeMillis() - start) + " ");
         });
+       strArray("sathihsh");
+    }
+
+      static void strArray(String name){
+
+        IntStream.range(0, name.length()).forEach(i -> {
+
+        });
 
     }
 
