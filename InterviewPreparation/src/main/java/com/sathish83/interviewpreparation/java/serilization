@@ -18,7 +18,7 @@ The Serialization runtime associates a version number with each Serializable cla
 which is used during Deserialization to verify that sender and reciever 
 of a serialized object have loaded classes for that object which are 
 compatible with respect to serialization. 
-If the reciever has loaded a class for the object that has different UID than that of 
+If the receiver has loaded a class for the object that has different UID than that of
 corresponding sender’s class, the Deserialization will result in an InvalidClassException.
 
 A Serializable class can declare its own UID explicitly by declaring a field name.

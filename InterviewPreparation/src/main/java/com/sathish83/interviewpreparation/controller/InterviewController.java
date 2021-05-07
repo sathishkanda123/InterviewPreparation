@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sathish83.interviewpreparation.service.InterviewService;
 
-@RestController
+@Controller
 public class InterviewController implements InitializingBean , DisposableBean{ 
 
 	InterviewService interviewService;
